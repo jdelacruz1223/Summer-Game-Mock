@@ -11,14 +11,11 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     //public SpriteRenderer sr;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         RaycastHit hit;
@@ -33,14 +30,15 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
+
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         Vector3 movDir = new Vector3(x, 0, y);
         rb.velocity = movDir * speed;
-
-        
-
-
-
     }
 }
