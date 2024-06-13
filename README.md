@@ -23,3 +23,4 @@
 1. `git add .` add every files that you changed
 2. `git commit -m "<message>"` finalized changes, `<message>` is required. Please type what you changed or what you made.
 3. `git push -u origin main` finally push the changes to the main repository.
+4. Good job!
