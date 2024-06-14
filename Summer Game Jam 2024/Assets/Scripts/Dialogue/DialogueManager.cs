@@ -13,10 +13,10 @@ public class DialogueManager : MonoBehaviour
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
-    [SerializeField] public bool dialogueIsPlaying { get; private set; }
+    public bool dialogueIsPlaying { get; private set; }
 
     [Header("Choices UI")]
-    [SerializeField] private TextMeshProUGUI[] choicesText;
+    private TextMeshProUGUI[] choicesText;
     [SerializeField] private GameObject[] choices;
 
     [Header("Encounter UI")]
@@ -24,9 +24,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject encountersPanel;
     [SerializeField] private TextMeshProUGUI encounterText;
 
-    [SerializeField] public bool randomEncounterPlaying { get; set; }
+    public bool randomEncounterPlaying { get; set; }
 
-    
     private Story currentStory;
 
     PlayerInputActions playerControls;
@@ -53,20 +52,10 @@ public class DialogueManager : MonoBehaviour
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
 
-        if (!randomEncounterPlaying)
+        foreach (GameObject choice in choices)
         {
-            foreach (GameObject choice in choices)
-            {
-                choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
-                index++;
-            }
-        } else
-        {
-            foreach (GameObject choice in encountersChoices)
-            {
-                choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
-                index++;
-            }
+            choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
+            index++;
         }
     }
 
@@ -74,8 +63,21 @@ public class DialogueManager : MonoBehaviour
     {
         if (!dialogueIsPlaying) return;
 
+
         if (playerControls.Controls.Interact.triggered)
         {
+            if (!dialoguePanel.activeSelf)
+            {
+                choicesText = new TextMeshProUGUI[choices.Length];
+                int index = 0;
+
+                foreach (GameObject choice in encountersChoices)
+                {
+                    choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
+                    index++;
+                }
+            }
+
             ContinueStory();
             DialogueChoices.GetInstance().ParseTag(currentStory);
         }
@@ -93,14 +95,16 @@ public class DialogueManager : MonoBehaviour
     {
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
+        randomEncounterPlaying = true;
         encountersPanel.SetActive(true);
     }
 
     private void ExitDialogueMode()
     {
+        dialogueIsPlaying = false;
+
         if (!randomEncounterPlaying)
         { 
-            dialogueIsPlaying = false;
             dialoguePanel.SetActive(false);
             dialogueText.text = "";
             if (currentStory.canContinue)
@@ -109,16 +113,16 @@ public class DialogueManager : MonoBehaviour
                 DisplayChoices();
             }
         } else {
-            dialogueIsPlaying = false;
             encountersPanel.SetActive(false);
             encounterText.text = "";
-            randomEncounterPlaying = false;
 
             if (currentStory.canContinue)
             {
                 encounterText.text = currentStory.Continue();
                 DisplayEncounterChoices();
             }
+
+            randomEncounterPlaying = false;
         }
     }
 
@@ -126,10 +130,16 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
             if (!randomEncounterPlaying)
+            {
+                dialogueText.text = currentStory.Continue();
                 DisplayChoices();
-            else DisplayEncounterChoices();
+            }
+            else
+            {
+                encounterText.text = currentStory.Continue();
+                DisplayEncounterChoices();
+            }
         }
         else
         {
@@ -192,12 +202,14 @@ public class DialogueManager : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         yield return new WaitForEndOfFrame();
-        EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+
+        var choice_button = choices[0].gameObject;
+        if (randomEncounterPlaying) choice_button = encountersChoices[0].gameObject;
+        EventSystem.current.SetSelectedGameObject(choice_button);
     }
 
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
-        
     }
 }
