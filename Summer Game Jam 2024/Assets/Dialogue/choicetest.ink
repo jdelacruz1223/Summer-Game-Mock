@@ -3,12 +3,26 @@
 === main ===
 Hello traveler, what do you choose?
     + [Charmander]
-        -> chosen("Charmander")
+        -> Charmander
     + [Bulbasaur]
-        -> chosen("Bulbasaur")
+        -> Bulbasaur
     + [Squirtle]
-        -> chosen("Squirtle")
+        -> Squritle
 
-=== chosen(pokemon) ===
-You chose {pokemon}!
+
+== Charmander ==
+#reward sword
+You got a sword!
+-> DONE
+
+== Bulbasaur ==
+#reward backpack
+You got a backpack!
+-> DONE
+
+== Squritle ==
+#reward tire
+You got a tire!
+-> DONE
+
 -> END

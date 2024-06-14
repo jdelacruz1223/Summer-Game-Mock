@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class DialogueTrigger : MonoBehaviour
+public class RandomEncounterTrigger : MonoBehaviour
 {
-
-
     [Header("Visual Cue")]
     [SerializeField] private GameObject visualCue;
 
@@ -33,9 +30,7 @@ public class DialogueTrigger : MonoBehaviour
 
             if (playerActions.Controls.Interact.triggered)
             {
-                DialogueManager.GetInstance().EnterDialogueMode(inkJson);
-                // example for random encounters
-                //DialogueManager.GetInstance().EnterEncounterDialogueMode(inkJson);
+                DialogueManager.GetInstance().EnterEncounterDialogueMode(inkJson);
                 visualCue.SetActive(false);
             }
         }
