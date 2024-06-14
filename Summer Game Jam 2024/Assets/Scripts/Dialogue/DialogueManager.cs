@@ -114,6 +114,7 @@ public class DialogueManager : MonoBehaviour
             }
         } else {
             encountersPanel.SetActive(false);
+            randomEncounterPlaying = false;
             encounterText.text = "";
 
             if (currentStory.canContinue)
@@ -122,7 +123,6 @@ public class DialogueManager : MonoBehaviour
                 DisplayEncounterChoices();
             }
 
-            randomEncounterPlaying = false;
         }
     }
 
