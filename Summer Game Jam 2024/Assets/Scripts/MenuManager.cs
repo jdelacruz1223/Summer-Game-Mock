@@ -19,7 +19,6 @@ public class MenuManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        DataManager.me.lifeCount = 10;
-        DataManager.me.destroyedDoors = 0;
+       
     }
 }
