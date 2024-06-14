@@ -33,9 +33,7 @@ public class DialogueTrigger : MonoBehaviour
 
             if (playerActions.Controls.Interact.triggered)
             {
-                // example for random encounters
-                DialogueManager.GetInstance().randomEncounterPlaying = true;
-                DialogueManager.GetInstance().EnterEncounterDialogueMode(inkJson);
+                DialogueManager.GetInstance().EnterDialogueMode(inkJson);
                 visualCue.SetActive(false);
             }
         }
