@@ -6,7 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField] public GameObject controlsPanel;
+    [SerializeField] public GameObject settingsPanel;
 
+    void Start()
+    {
+        // controlsPanel = GetComponent<GameObject>();
+        // settingsPanel = GetComponent<GameObject>();
+    }
 
     public void StartGame()
     {
@@ -24,5 +31,15 @@ public class MenuManager : MonoBehaviour
     {
         //Debug.Log("RestartGame method called");
         SceneManager.LoadScene(0);
+    }
+
+    public void OpenControls()
+    {
+        controlsPanel.SetActive(true);
+    }
+
+    public void OpenSettings()
+    {
+        settingsPanel.SetActive(true);
     }
 }
