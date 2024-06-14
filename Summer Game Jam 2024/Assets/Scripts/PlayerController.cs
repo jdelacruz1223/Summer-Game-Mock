@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     
     public LayerMask terrainLayer;
     public Rigidbody rb;
-    //public SpriteRenderer sr;
 
     void Start()
     {
