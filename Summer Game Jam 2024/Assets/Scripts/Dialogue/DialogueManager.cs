@@ -12,13 +12,14 @@ public class DialogueManager : MonoBehaviour
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] public bool dialogueIsPlaying { get; private set; }
 
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
     private Story currentStory;
-    public bool dialogueIsPlaying { get; private set; }
+    
 
     PlayerInputActions playerControls;
     
@@ -66,7 +67,7 @@ public class DialogueManager : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
-        ContinueStory();
+        
     }
 
     private void ExitDialogueMode()
@@ -74,6 +75,12 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        if (currentStory.canContinue)
+        {
+            dialogueText.text = currentStory.Continue();
+            DisplayChoices();
+        }
+        
     }
 
     void ContinueStory()

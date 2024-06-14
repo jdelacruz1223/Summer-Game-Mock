@@ -1,5 +1,5 @@
 ## Project
-- Unity 2022.3.7f1
+- Unity 2022.3.33f1 LTS
 - Universal Render Pipeline
 - 3D Template
 
