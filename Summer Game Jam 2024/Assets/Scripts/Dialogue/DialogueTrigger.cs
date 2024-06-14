@@ -27,14 +27,15 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-
         if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
         {
             visualCue.SetActive(true);
 
             if (playerActions.Controls.Interact.triggered)
             {
-                DialogueManager.GetInstance().EnterDialogueMode(inkJson);
+                // example for random encounters
+                DialogueManager.GetInstance().randomEncounterPlaying = true;
+                DialogueManager.GetInstance().EnterEncounterDialogueMode(inkJson);
                 visualCue.SetActive(false);
             }
         }
@@ -52,5 +53,4 @@ public class DialogueTrigger : MonoBehaviour
         if (other.gameObject.tag == "Player")
             playerInRange = false;
     }
-
 }

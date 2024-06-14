@@ -6,6 +6,7 @@ using Ink.Runtime;
 using UnityEngine.InputSystem;
 using System.Threading.Tasks;
 using UnityEngine.EventSystems;
+using Assets.Scripts.Dialogue;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -15,11 +16,18 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] public bool dialogueIsPlaying { get; private set; }
 
     [Header("Choices UI")]
+    [SerializeField] private TextMeshProUGUI[] choicesText;
     [SerializeField] private GameObject[] choices;
-    private TextMeshProUGUI[] choicesText;
 
-    private Story currentStory;
+    [Header("Encounter UI")]
+    [SerializeField] private GameObject[] encountersChoices;
+    [SerializeField] private GameObject encountersPanel;
+    [SerializeField] private TextMeshProUGUI encounterText;
+
+    [SerializeField] public bool randomEncounterPlaying { get; set; }
+
     
+    private Story currentStory;
 
     PlayerInputActions playerControls;
     
@@ -42,12 +50,23 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
 
         // get all of the choices text
-        choicesText =new TextMeshProUGUI[choices.Length];
+        choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
-        foreach (GameObject choice in choices)
+
+        if (!randomEncounterPlaying)
         {
-            choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
-            index++;
+            foreach (GameObject choice in choices)
+            {
+                choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
+                index++;
+            }
+        } else
+        {
+            foreach (GameObject choice in encountersChoices)
+            {
+                choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
+                index++;
+            }
         }
     }
 
@@ -58,6 +77,7 @@ public class DialogueManager : MonoBehaviour
         if (playerControls.Controls.Interact.triggered)
         {
             ContinueStory();
+            DialogueChoices.GetInstance().ParseTag(currentStory);
         }
     }
 
@@ -67,20 +87,39 @@ public class DialogueManager : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
-        
+    }
+
+    public void EnterEncounterDialogueMode(TextAsset inkJSON)
+    {
+        currentStory = new Story(inkJSON.text);
+        dialogueIsPlaying = true;
+        encountersPanel.SetActive(true);
     }
 
     private void ExitDialogueMode()
     {
-        dialogueIsPlaying = false;
-        dialoguePanel.SetActive(false);
-        dialogueText.text = "";
-        if (currentStory.canContinue)
-        {
-            dialogueText.text = currentStory.Continue();
-            DisplayChoices();
+        if (!randomEncounterPlaying)
+        { 
+            dialogueIsPlaying = false;
+            dialoguePanel.SetActive(false);
+            dialogueText.text = "";
+            if (currentStory.canContinue)
+            {
+                dialogueText.text = currentStory.Continue();
+                DisplayChoices();
+            }
+        } else {
+            dialogueIsPlaying = false;
+            encountersPanel.SetActive(false);
+            encounterText.text = "";
+            randomEncounterPlaying = false;
+
+            if (currentStory.canContinue)
+            {
+                encounterText.text = currentStory.Continue();
+                DisplayEncounterChoices();
+            }
         }
-        
     }
 
     void ContinueStory()
@@ -88,7 +127,9 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.canContinue)
         {
             dialogueText.text = currentStory.Continue();
-            DisplayChoices();
+            if (!randomEncounterPlaying)
+                DisplayChoices();
+            else DisplayEncounterChoices();
         }
         else
         {
@@ -110,13 +151,38 @@ public class DialogueManager : MonoBehaviour
         {
             choices[index].gameObject.SetActive(true);
             choicesText[index].text = choice.text;
-            Debug.Log(choice.text);
             index++;
         }
 
         for (int i = index; i < choices.Length; i++)
         {
             choices[i].gameObject.SetActive(false);
+        }
+
+        StartCoroutine(SelectFirstChoice());
+    }
+
+    void DisplayEncounterChoices()
+    {
+        List<Choice> currentChoices = currentStory.currentChoices;
+
+        if (currentChoices.Count > encountersChoices.Length)
+        {
+            Debug.LogError("More choices were given than the UI can support. Number of choices given: " + currentChoices.Count);
+        }
+
+        int index = 0;
+        foreach (Choice choice in currentChoices)
+        {
+            encountersChoices[index].gameObject.SetActive(true);
+            choicesText[index].text = choice.text;
+            Debug.Log(choice.text);
+            index++;
+        }
+
+        for (int i = index; i < encountersChoices.Length; i++)
+        {
+            encountersChoices[i].gameObject.SetActive(false);
         }
 
         StartCoroutine(SelectFirstChoice());
@@ -132,5 +198,6 @@ public class DialogueManager : MonoBehaviour
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
+        
     }
 }

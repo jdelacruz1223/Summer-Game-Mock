@@ -10,5 +10,6 @@ Hello traveler, what do you choose?
         -> chosen("Squirtle")
 
 === chosen(pokemon) ===
-You chose {pokemon}!
+#reward medkit
+You got {pokemon}!
 -> END
