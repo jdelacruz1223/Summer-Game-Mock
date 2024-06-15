@@ -2,6 +2,7 @@ using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
@@ -37,16 +38,20 @@ public class Manager : MonoBehaviour
     public static Manager GetInstance() { return me; }
 
     public static Manager me;
+
+    public int Money { get; private set; }
+    public int Food { get; private set; }
+    public int Tires { get; private set; }
+    public int Entertainment { get; private set; }
+
+    public Text moneyText;
+    public Text foodText;
+    public Text tiresText;
+    public Text entertainmentText;
+
     void Awake()
     {
-        if (me != null) 
-        {
-            Destroy(gameObject);
-            return;
-        }
 
-        me = this;  
-        DontDestroyOnLoad(gameObject);
     }
 
     int lessCheck(int initial, int new_value) { int val = initial - new_value; if (val >= 0) return val; else return 0; }
