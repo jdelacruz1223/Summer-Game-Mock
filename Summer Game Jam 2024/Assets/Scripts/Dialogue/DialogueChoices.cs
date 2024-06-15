@@ -30,7 +30,7 @@ namespace Assets.Scripts.Dialogue
 
         public void ParseTag(Story story)
         {
-
+            Debug.Log("Parsing Tags");
             tags = story.currentTags;
 
             foreach (string t in tags)
@@ -46,11 +46,13 @@ namespace Assets.Scripts.Dialogue
                         switch (param.ToLower())
                         {
                             case "money":
+                                Debug.Log("giving money");
                                 Manager.GetInstance().increaseMoneyCount(Random.Range(0, 100));
                                 break;
                         }
                         break;
                     case "harm":
+                        Debug.Log("Harm user");
                         Manager.GetInstance().decreaseUserHealth(int.Parse(param));
                         break;
                     case "open":

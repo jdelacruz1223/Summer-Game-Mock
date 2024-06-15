@@ -47,7 +47,7 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         dialogueIsPlaying = false;
-        dialoguePanel.SetActive(false);
+        UIManager.GetInstance().ControlUI(dialoguePanel, false);
     }
 
     IEnumerator triggerCheck()
@@ -74,6 +74,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON)
     {
+        Cursor.visible = false;
         nowInDialogueMode = true;
         StartCoroutine(triggerCheck());
 
@@ -103,6 +104,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterEncounterDialogueMode(TextAsset inkJSON)
     {
+        Cursor.visible = false;
         UIManager.GetInstance().HideUI();
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
@@ -129,7 +131,6 @@ public class DialogueManager : MonoBehaviour
 
     void ExitDialogueMode()
     {
-        UIManager.GetInstance().RestoreUI();
 
         if (!randomEncounterPlaying)
         {
@@ -156,6 +157,9 @@ public class DialogueManager : MonoBehaviour
             RandomEncounterManager.GetInstance().currentlyInEncounter = false;
         }
 
+        Cursor.visible = true;
+        UIManager.GetInstance().RestoreUI();
+        Debug.Log(currentStory.currentTags.ToString());
         DialogueChoices.GetInstance().ParseTag(currentStory);
     }
 

@@ -45,26 +45,38 @@ public class UIManager : MonoBehaviour
         CurrentMoneyTxt.text = "Budget: " + dataInstance.currentMoney.ToString();
         DaysLeftTxt.text = "Days Left: " + dataInstance.daysLeft.ToString();
         GasTxt.text = "Gas: " + dataInstance.gasNum.ToString();
+        DistanceTxt.text = "Current Progress: " + dataInstance.currentProgress.ToString() + "%";
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="obj">The UI Game Object</param>
+    /// <param name="hide">True for Hide, False for Show</param>
+    public void ControlUI(GameObject obj, bool show)
+    {
+        if (obj != null) obj.SetActive(show);
+        else Debug.Log("Panel is not set. Ignored.");
     }
 
     public void HideUI()
     {
         if (DialogueManager.GetInstance().dialogueIsPlaying)
         {
-            GameUI.SetActive(false);
-            ShopUI.SetActive(false);
+            ControlUI(ShopUI, false);
+            ControlUI(GameUI, false);
         } else
         {
-            GameUI.SetActive(false);
-            DialoguePanel.SetActive(false);
+            ControlUI(GameUI, false);
+            ControlUI(DialoguePanel, false);
         }
     }
 
     public void RestoreUI()
     {
-        GameUI.SetActive(true);
+        ControlUI(GameUI, true);
     }
 
-    public void OpenShopUI() { ShopUI.SetActive(true); HideUI(); }
-    public void CloseShopUI() { ShopUI.SetActive(false); RestoreUI(); }
+    public void OpenShopUI() { ControlUI(ShopUI, true); HideUI(); }
+    public void CloseShopUI() { ControlUI(ShopUI, false); RestoreUI(); }
 }

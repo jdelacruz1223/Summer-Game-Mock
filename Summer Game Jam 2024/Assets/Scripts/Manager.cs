@@ -28,6 +28,7 @@ public class Manager : MonoBehaviour
     public int daysLeft { get; private set; }
     [SerializeField] public float gasNum { get; private set; }
     [SerializeField] public float userHealth { get; private set; }
+    public float currentProgress { get; private set; }
 
     /// <summary>
     /// End Game Scene Variables
@@ -110,7 +111,7 @@ public class Manager : MonoBehaviour
     public void decreaseDrugsCount(int value) => drugsNum = lessCheck(drugsNum, value);
     #endregion
 
-    #region END GAME SCENE
+    #region GAMEPLAY
     public void decreaseDaysLeftCount() => daysLeft -= 1;
 
     public void increaseGasCount(float value) => gasNum += value;
@@ -127,5 +128,7 @@ public class Manager : MonoBehaviour
         Debug.Log(val);
         if (val >= 0) userHealth = val; else userHealth = 0;
     }
+
+    public void setCurrentProgress(float value) => currentProgress = value;
     #endregion
 }
