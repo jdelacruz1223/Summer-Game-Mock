@@ -11,7 +11,7 @@ namespace Assets.Scripts
         public int secondsPerEncounter;
         public float encounterPercentage;
 
-        public bool currentlyInEncounter { get; private set; }
+        public bool currentlyInEncounter { get; set; }
 
         private static RandomEncounterManager instance;
 
@@ -20,14 +20,27 @@ namespace Assets.Scripts
         {
             if (instance != null) Debug.LogWarning("Another instance of the RandomEncounterManager is running.");
             instance = this;
+        }
 
-            StartCoroutine(RandomEncounter());
+        private void Start()
+        {
+            currentlyInEncounter = false;
+        }
+
+        private void Update()
+        {
+            if (!currentlyInEncounter)
+            {
+                currentlyInEncounter = true;
+                StartCoroutine(RandomEncounter());
+
+            }
         }
 
         IEnumerator RandomEncounter()
         {
             yield return new WaitForSeconds(5);
-
+         
             // Select Randomly from the list of stories
             int index = Random.Range(0, Stories.Count);
             TextAsset inkJson = Stories[index];
