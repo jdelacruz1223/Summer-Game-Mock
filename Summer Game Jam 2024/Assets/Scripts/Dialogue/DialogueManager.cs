@@ -131,7 +131,6 @@ public class DialogueManager : MonoBehaviour
 
     void ExitDialogueMode()
     {
-
         if (!randomEncounterPlaying)
         {
             dialogueIsPlaying = false;

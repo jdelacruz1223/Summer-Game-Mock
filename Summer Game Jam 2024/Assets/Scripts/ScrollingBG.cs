@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Assets.Scripts;
 
 public class ScrollingBackground : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class ScrollingBackground : MonoBehaviour
 
     void Update()
     {
+        if (RandomEncounterManager.GetInstance().currentlyInEncounter) return;
+
         // Move each road segment to the left
         foreach (GameObject segment in roadSegments)
         {
