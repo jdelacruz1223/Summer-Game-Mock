@@ -238,7 +238,7 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator SelectFirstChoice()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1/2);
 
         var choice_button = choices[0].gameObject;
         if (randomEncounterPlaying) choice_button = encountersChoices[0].gameObject;
