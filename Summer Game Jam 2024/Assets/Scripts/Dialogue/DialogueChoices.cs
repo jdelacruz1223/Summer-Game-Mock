@@ -47,6 +47,14 @@ namespace Assets.Scripts.Dialogue
                     case "harmed":
                         Debug.Log(param);
                         break;
+                    case "open":
+                        switch(param)
+                        {
+                            case "shop":
+                                Debug.Log("Open Shop UI");
+                                break;
+                        }
+                        break;
                 }
             }
         }

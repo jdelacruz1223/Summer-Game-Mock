@@ -18,7 +18,7 @@ namespace Assets.Scripts
         public static RandomEncounterManager GetInstance() { return instance; }
         private void Awake()
         {
-            if (instance != null) Debug.LogWarning("Another instance of the DialogueManager is running.");
+            if (instance != null) Debug.LogWarning("Another instance of the RandomEncounterManager is running.");
             instance = this;
 
             StartCoroutine(RandomEncounter());
