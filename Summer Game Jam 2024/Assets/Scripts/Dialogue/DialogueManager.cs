@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using System.Threading.Tasks;
 using UnityEngine.EventSystems;
 using Assets.Scripts.Dialogue;
+using Assets.Scripts;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class DialogueManager : MonoBehaviour
     
     private static DialogueManager instance;
 
+    bool nowInDialogueMode;
+
     private void Awake()
     {
         playerControls = new PlayerInputActions();
@@ -41,31 +44,44 @@ public class DialogueManager : MonoBehaviour
         instance = this;
     }
 
-    public static DialogueManager GetInstance() { return instance; }
-
     private void Start()
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
     }
 
+    IEnumerator triggerCheck()
+    {
+        Debug.Log("Trigger Checked");
+       
+        yield return new WaitForSeconds(1/2);
+        nowInDialogueMode = false;
+        Debug.Log("NowInDialogueMode set to False");
+       
+    }
+
+    public static DialogueManager GetInstance() { return instance; }
+
     private void Update()
     {
         if (!dialogueIsPlaying) return;
 
-
-        if (playerControls.Controls.Interact.triggered)
+        if (playerControls.Controls.Interact.triggered && !nowInDialogueMode)
         {
+            Debug.Log("Triggered");
             ContinueStory();
             DialogueChoices.GetInstance().ParseTag(currentStory);
         }
     }
 
-
     public void EnterDialogueMode(TextAsset inkJSON)
     {
+        nowInDialogueMode = true;
+        StartCoroutine(triggerCheck());
+
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
+        randomEncounterPlaying = false;
         dialoguePanel.SetActive(true);
 
         if (currentStory.canContinue)
@@ -113,10 +129,9 @@ public class DialogueManager : MonoBehaviour
 
     private void ExitDialogueMode()
     {
-        dialogueIsPlaying = false;
-
         if (!randomEncounterPlaying)
-        { 
+        {
+            dialogueIsPlaying = false;
             dialoguePanel.SetActive(false);
             dialogueText.text = "";
             if (currentStory.canContinue)
@@ -125,8 +140,8 @@ public class DialogueManager : MonoBehaviour
                 DisplayChoices();
             }
         } else {
+            dialogueIsPlaying = false;
             encountersPanel.SetActive(false);
-            randomEncounterPlaying = false;
             encounterText.text = "";
 
             if (currentStory.canContinue)
@@ -135,6 +150,8 @@ public class DialogueManager : MonoBehaviour
                 DisplayEncounterChoices();
             }
 
+            randomEncounterPlaying = false;
+            RandomEncounterManager.GetInstance().currentlyInEncounter = false;
         }
     }
 
