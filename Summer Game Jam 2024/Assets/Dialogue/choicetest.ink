@@ -1,28 +1,27 @@
 -> main
 
 === main ===
-Hello traveler, what do you choose?
-    + [Charmander]
-        -> Charmander
-    + [Bulbasaur]
-        -> Bulbasaur
-    + [Squirtle]
-        -> Squritle
+You encountered a lonely man! He asks if you could kindly give him a ride to the next stop.
+    + [You can go with us]
+        -> FirstChoice
+    + [Steal from the guy]
+        -> SecondChoice
+    + [Flip him off]
+        -> ThirdChoice
 
 
-== Charmander ==
-#reward sword
-You got a sword!
+== FirstChoice ==
+#reward money
+He gave you money as a sign of thanks!
 -> DONE
 
-== Bulbasaur ==
-#reward backpack
-You got a backpack!
+== SecondChoice ==
+#reward money
+You took his money and ran off!
 -> DONE
 
-== Squritle ==
-#reward tire
-You got a tire!
+== ThirdChoice ==
+He pointed you his gun but he missed because you already started driving off.
 -> DONE
 
 -> END

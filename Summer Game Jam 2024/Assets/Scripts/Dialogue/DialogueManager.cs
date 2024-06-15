@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using System.Threading.Tasks;
 using UnityEngine.EventSystems;
 using Assets.Scripts.Dialogue;
+using Assets.Scripts;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -150,6 +151,7 @@ public class DialogueManager : MonoBehaviour
             }
 
             randomEncounterPlaying = false;
+            RandomEncounterManager.GetInstance().currentlyInEncounter = false;
         }
     }
 
