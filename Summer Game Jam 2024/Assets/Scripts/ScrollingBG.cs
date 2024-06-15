@@ -36,6 +36,7 @@ public class ScrollingBackground : MonoBehaviour
     void Update()
     {
         if (RandomEncounterManager.GetInstance().currentlyInEncounter) return;
+        if (Manager.GetInstance().currentProgress == 100) Destroy(this);
 
         // Move each road segment to the left
         foreach (GameObject segment in roadSegments)

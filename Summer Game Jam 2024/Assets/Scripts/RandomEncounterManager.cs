@@ -28,6 +28,14 @@ namespace Assets.Scripts
             StartCoroutine(RandomEncounter());
         }
 
+        private void Update()
+        {
+            // Once it reaches somewhere 95% delete this script so that it doesn't spawn any more random encounters.
+            if (Manager.GetInstance().currentProgress == 95) Destroy(this);
+        }
+
+       
+
         IEnumerator RandomEncounter()
         {
             while (true)
@@ -46,6 +54,8 @@ namespace Assets.Scripts
                         DialogueManager.GetInstance().EnterEncounterDialogueMode(inkJson);
                     }
                 }
+                
+
                 yield return null;
             }
         }
