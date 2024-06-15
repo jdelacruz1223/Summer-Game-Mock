@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,14 +13,17 @@ public class ProgressTracker : MonoBehaviour
 
     void Update()
     {
-        // Update progress based on speed and time
-        currentProgress += speed * Time.deltaTime;
+        if (!RandomEncounterManager.GetInstance().currentlyInEncounter)
+        {
+            // Update progress based on speed and time
+            currentProgress += speed * Time.deltaTime;
 
-        // Clamp progress to total distance
-        currentProgress = Mathf.Clamp(currentProgress, 0, totalDistance);
+            // Clamp progress to total distance
+            currentProgress = Mathf.Clamp(currentProgress, 0, totalDistance);
 
-        // Update UI elements
-        UpdateProgressUI();
+            // Update UI elements
+            UpdateProgressUI();
+        }
     }
 
     void UpdateProgressUI()
@@ -27,6 +31,7 @@ public class ProgressTracker : MonoBehaviour
         if (progressText != null)
         {
             int progressPercentage = Mathf.RoundToInt((currentProgress / totalDistance) * 100.0f);
+            Manager.GetInstance().setCurrentProgress(progressPercentage);
             progressText.text = "Progress: " + progressPercentage.ToString() + "mi";
         }
 
