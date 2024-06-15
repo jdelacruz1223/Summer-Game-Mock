@@ -663,6 +663,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65488001}
   m_CullTransparentMesh: 1
+--- !u!1 &160709719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2998203935092370804, guid: 5c046ad9201bc544e904f54269588a08,
+    type: 3}
+  m_PrefabInstance: {fileID: 6425247677800488937}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &173451030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,7 +1017,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.069750845, y: 0, z: 0, w: 0.99756444}
-  m_LocalPosition: {x: 0.24, y: 3.8222222, z: -9.733976}
+  m_LocalPosition: {x: 0, y: 3.804222, z: -9.733976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1525,7 +1531,7 @@ Transform:
   m_GameObject: {fileID: 444428789}
   serializedVersion: 2
   m_LocalRotation: {x: 0.069750845, y: -0, z: -0, w: 0.99756444}
-  m_LocalPosition: {x: 0.24, y: 3.8222222, z: -9.733976}
+  m_LocalPosition: {x: 0, y: 3.804222, z: -9.733976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2295,7 +2301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ce1f546a0635b45a7317d08befd1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4.5
   groundDist: 1.05
   terrainLayer:
     serializedVersion: 2
@@ -2321,8 +2327,8 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2347,7 +2353,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.38
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1198178889
 Transform:
@@ -2358,7 +2364,7 @@ Transform:
   m_GameObject: {fileID: 1198178885}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24, y: 1.23, z: 0}
+  m_LocalPosition: {x: 0, y: 1.212, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3868,6 +3874,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118986896}
   m_CullTransparentMesh: 1
+--- !u!1 &2119099349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2747893635085583278, guid: 5c046ad9201bc544e904f54269588a08,
+    type: 3}
+  m_PrefabInstance: {fileID: 6425247677800488937}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2119099356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119099349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed2ed7d2353a194a9062a56113f1850, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualCue: {fileID: 160709719}
+  inkJson: {fileID: 4900000, guid: b93b5d0b32172a54f9a585b4bc351df6, type: 3}
 --- !u!1 &2123775376
 GameObject:
   m_ObjectHideFlags: 0
@@ -4209,10 +4235,15 @@ PrefabInstance:
       propertyPath: inkJson
       value: 
       objectReference: {fileID: 4900000, guid: b93b5d0b32172a54f9a585b4bc351df6, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8460831190179260559, guid: 5c046ad9201bc544e904f54269588a08, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2747893635085583278, guid: 5c046ad9201bc544e904f54269588a08,
+        type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 2119099356}
   m_SourcePrefab: {fileID: 100100000, guid: 5c046ad9201bc544e904f54269588a08, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

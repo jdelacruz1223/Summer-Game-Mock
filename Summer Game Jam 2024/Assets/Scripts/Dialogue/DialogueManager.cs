@@ -68,22 +68,20 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
-        if (currentStory.canContinue)
+      
+        dialogueText.text = currentStory.Continue();
+
+        choicesText = new TextMeshProUGUI[choices.Length];
+        int index = 0;
+
+        foreach (GameObject choice in choices)
         {
-            dialogueText.text = currentStory.Continue();
-
-            choicesText = new TextMeshProUGUI[choices.Length];
-            int index = 0;
-
-            foreach (GameObject choice in choices)
-            {
-                choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
-                index++;
-            }
-
-            // Display if there is
-            DisplayChoices();
+            choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
+            index++;
         }
+
+        // Display if there is
+        DisplayChoices();
     }
 
     public void EnterEncounterDialogueMode(TextAsset inkJSON)
@@ -113,10 +111,10 @@ public class DialogueManager : MonoBehaviour
 
     private void ExitDialogueMode()
     {
-        dialogueIsPlaying = false;
 
         if (!randomEncounterPlaying)
         { 
+            dialogueIsPlaying = false;
             dialoguePanel.SetActive(false);
             dialogueText.text = "";
             if (currentStory.canContinue)
@@ -125,8 +123,8 @@ public class DialogueManager : MonoBehaviour
                 DisplayChoices();
             }
         } else {
+            dialogueIsPlaying = false;
             encountersPanel.SetActive(false);
-            randomEncounterPlaying = false;
             encounterText.text = "";
 
             if (currentStory.canContinue)
@@ -135,6 +133,7 @@ public class DialogueManager : MonoBehaviour
                 DisplayEncounterChoices();
             }
 
+            randomEncounterPlaying = false;
         }
     }
 
