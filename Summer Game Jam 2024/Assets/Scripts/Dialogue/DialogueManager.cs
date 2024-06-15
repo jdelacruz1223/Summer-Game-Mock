@@ -131,7 +131,6 @@ public class DialogueManager : MonoBehaviour
 
     void ExitDialogueMode()
     {
-
         if (!randomEncounterPlaying)
         {
             dialogueIsPlaying = false;
@@ -206,12 +205,12 @@ public class DialogueManager : MonoBehaviour
         {
             choices[i].gameObject.SetActive(false);
         }
-
         StartCoroutine(SelectFirstChoice());
     }
 
     void DisplayEncounterChoices()
     {
+
         List<Choice> currentChoices = currentStory.currentChoices;
 
         if (currentChoices.Count > encountersChoices.Length)
@@ -232,7 +231,6 @@ public class DialogueManager : MonoBehaviour
         {
             encountersChoices[i].gameObject.SetActive(false);
         }
-
         StartCoroutine(SelectFirstChoice());
     }
 
@@ -240,7 +238,6 @@ public class DialogueManager : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         yield return new WaitForEndOfFrame();
-
         var choice_button = choices[0].gameObject;
         if (randomEncounterPlaying) choice_button = encountersChoices[0].gameObject;
         EventSystem.current.SetSelectedGameObject(choice_button);
