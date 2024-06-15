@@ -32,6 +32,8 @@ public class DialogueManager : MonoBehaviour
     
     private static DialogueManager instance;
 
+    bool nowInDialogueMode;
+
     private void Awake()
     {
         playerControls = new PlayerInputActions();
@@ -41,47 +43,62 @@ public class DialogueManager : MonoBehaviour
         instance = this;
     }
 
-    public static DialogueManager GetInstance() { return instance; }
-
     private void Start()
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
     }
 
+    IEnumerator triggerCheck()
+    {
+        Debug.Log("Trigger Checked");
+       
+        yield return new WaitForSeconds(1/2);
+        nowInDialogueMode = false;
+        Debug.Log("NowInDialogueMode set to False");
+       
+    }
+
+    public static DialogueManager GetInstance() { return instance; }
+
     private void Update()
     {
         if (!dialogueIsPlaying) return;
 
-
-        if (playerControls.Controls.Interact.triggered)
+        if (playerControls.Controls.Interact.triggered && !nowInDialogueMode)
         {
+            Debug.Log("Triggered");
             ContinueStory();
             DialogueChoices.GetInstance().ParseTag(currentStory);
         }
     }
 
-
     public void EnterDialogueMode(TextAsset inkJSON)
     {
+        nowInDialogueMode = true;
+        StartCoroutine(triggerCheck());
+
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
+        randomEncounterPlaying = false;
         dialoguePanel.SetActive(true);
 
-      
-        dialogueText.text = currentStory.Continue();
-
-        choicesText = new TextMeshProUGUI[choices.Length];
-        int index = 0;
-
-        foreach (GameObject choice in choices)
+        if (currentStory.canContinue)
         {
-            choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
-            index++;
-        }
+            dialogueText.text = currentStory.Continue();
 
-        // Display if there is
-        DisplayChoices();
+            choicesText = new TextMeshProUGUI[choices.Length];
+            int index = 0;
+
+            foreach (GameObject choice in choices)
+            {
+                choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
+                index++;
+            }
+
+            // Display if there is
+            DisplayChoices();
+        }
     }
 
     public void EnterEncounterDialogueMode(TextAsset inkJSON)
@@ -111,9 +128,8 @@ public class DialogueManager : MonoBehaviour
 
     private void ExitDialogueMode()
     {
-
         if (!randomEncounterPlaying)
-        { 
+        {
             dialogueIsPlaying = false;
             dialoguePanel.SetActive(false);
             dialogueText.text = "";
