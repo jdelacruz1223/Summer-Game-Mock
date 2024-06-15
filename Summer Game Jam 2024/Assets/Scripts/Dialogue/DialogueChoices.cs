@@ -22,7 +22,7 @@ namespace Assets.Scripts.Dialogue
 
         private void Awake()
         {
-            if (instance != null) Debug.LogWarning("Another instance of the DialogueManager is running.");
+            if (instance != null) Debug.LogWarning("Another instance of the DialogueChoices is running.");
             instance = this;
         }
 
@@ -30,6 +30,7 @@ namespace Assets.Scripts.Dialogue
 
         public void ParseTag(Story story)
         {
+
             tags = story.currentTags;
 
             foreach (string t in tags)
@@ -42,16 +43,22 @@ namespace Assets.Scripts.Dialogue
                     // #reward sword | sword is the param, so basically give the player a sword if "reward" is called.
                     case "reward":
                         // give player medkit
-                        Debug.Log(param);
+                        switch (param.ToLower())
+                        {
+                            case "money":
+                                Manager.GetInstance().increaseMoneyCount(Random.Range(0, 100));
+                                break;
+                        }
                         break;
-                    case "harmed":
-                        Debug.Log(param);
+                    case "harm":
+                        Manager.GetInstance().decreaseUserHealth(int.Parse(param));
                         break;
                     case "open":
-                        switch(param)
+                        switch(param.ToLower())
                         {
                             case "shop":
-                                Debug.Log("Open Shop UI");
+                                Debug.Log("Opening Shop");
+                                UIManager.GetInstance().OpenShopUI();
                                 break;
                         }
                         break;

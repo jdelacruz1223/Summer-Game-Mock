@@ -68,9 +68,7 @@ public class DialogueManager : MonoBehaviour
 
         if (playerControls.Controls.Interact.triggered && !nowInDialogueMode)
         {
-            Debug.Log("Triggered");
             ContinueStory();
-            DialogueChoices.GetInstance().ParseTag(currentStory);
         }
     }
 
@@ -83,6 +81,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         randomEncounterPlaying = false;
         dialoguePanel.SetActive(true);
+        UIManager.GetInstance().HideUI();
 
         if (currentStory.canContinue)
         {
@@ -104,6 +103,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterEncounterDialogueMode(TextAsset inkJSON)
     {
+        UIManager.GetInstance().HideUI();
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         randomEncounterPlaying = true;
@@ -127,8 +127,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void ExitDialogueMode()
+    void ExitDialogueMode()
     {
+        UIManager.GetInstance().RestoreUI();
+
         if (!randomEncounterPlaying)
         {
             dialogueIsPlaying = false;
@@ -153,6 +155,8 @@ public class DialogueManager : MonoBehaviour
             randomEncounterPlaying = false;
             RandomEncounterManager.GetInstance().currentlyInEncounter = false;
         }
+
+        DialogueChoices.GetInstance().ParseTag(currentStory);
     }
 
     void ContinueStory()
@@ -169,6 +173,7 @@ public class DialogueManager : MonoBehaviour
                 encounterText.text = currentStory.Continue();
                 DisplayEncounterChoices();
             }
+
         }
         else
         {
