@@ -12,6 +12,8 @@ Hello traveler, what do you want to do?
 
 == FirstChoice ==
 #open shop
+Aighty, choose whatever item you like to buy. [E] to proceed.
+
 -> END
 
 == SecondChoice ==

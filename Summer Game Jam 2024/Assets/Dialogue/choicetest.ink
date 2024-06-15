@@ -21,6 +21,7 @@ You took his money and ran off!
 -> DONE
 
 == ThirdChoice ==
+#harm 20
 He pointed you his gun but he missed because you already started driving off.
 -> DONE
 
