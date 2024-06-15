@@ -25,27 +25,29 @@ namespace Assets.Scripts
         private void Start()
         {
             currentlyInEncounter = false;
-        }
-
-        private void Update()
-        {
-            if (!currentlyInEncounter)
-            {
-                currentlyInEncounter = true;
-                StartCoroutine(RandomEncounter());
-
-            }
+            StartCoroutine(RandomEncounter());
         }
 
         IEnumerator RandomEncounter()
         {
-            yield return new WaitForSeconds(5);
-         
-            // Select Randomly from the list of stories
-            int index = Random.Range(0, Stories.Count);
-            TextAsset inkJson = Stories[index];
+            while (true)
+            {
+                if (!currentlyInEncounter && Manager.GetInstance().currentProgress != 100)
+                {
+                    yield return new WaitForSeconds(secondsPerEncounter);
+                    if (Random.value <= encounterPercentage / 100)
+                    {
+                        currentlyInEncounter = true;
 
-            DialogueManager.GetInstance().EnterEncounterDialogueMode(inkJson);
+                        // Select Randomly from the list of stories
+                        int index = Random.Range(0, Stories.Count);
+                        TextAsset inkJson = Stories[index];
+
+                        DialogueManager.GetInstance().EnterEncounterDialogueMode(inkJson);
+                    }
+                }
+                yield return null;
+            }
         }
     }
 }
