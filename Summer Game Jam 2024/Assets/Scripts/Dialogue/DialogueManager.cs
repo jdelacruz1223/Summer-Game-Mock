@@ -205,12 +205,12 @@ public class DialogueManager : MonoBehaviour
         {
             choices[i].gameObject.SetActive(false);
         }
-
         StartCoroutine(SelectFirstChoice());
     }
 
     void DisplayEncounterChoices()
     {
+
         List<Choice> currentChoices = currentStory.currentChoices;
 
         if (currentChoices.Count > encountersChoices.Length)
@@ -231,15 +231,13 @@ public class DialogueManager : MonoBehaviour
         {
             encountersChoices[i].gameObject.SetActive(false);
         }
-
         StartCoroutine(SelectFirstChoice());
     }
 
     private IEnumerator SelectFirstChoice()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        yield return new WaitForSeconds(1/2);
-
+        yield return new WaitForEndOfFrame();
         var choice_button = choices[0].gameObject;
         if (randomEncounterPlaying) choice_button = encountersChoices[0].gameObject;
         EventSystem.current.SetSelectedGameObject(choice_button);

@@ -55,7 +55,6 @@ namespace Assets.Scripts
                     }
                 }
                 
-
                 yield return null;
             }
         }
