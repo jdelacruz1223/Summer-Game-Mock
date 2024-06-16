@@ -46,16 +46,12 @@ public class ScrollEffectScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Move each road segment to the left
         foreach (GameObject segment in roadSegments)
         {
             segment.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
         }
-
-        
     }
 
     public void RepositionRoadSegment()
