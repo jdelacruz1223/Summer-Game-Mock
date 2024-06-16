@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject DialoguePanel;
 
     [Header("Item UI")]
+    public TextMeshProUGUI DriverTxt;
     public TextMeshProUGUI HealthTxt;
     public TextMeshProUGUI CurrentMoneyTxt;
     public TextMeshProUGUI DaysLeftTxt;
@@ -41,11 +42,12 @@ public class UIManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         var dataInstance = Manager.GetInstance();
 
-        HealthTxt.text = "Health: " + dataInstance.userHealth.ToString();
-        CurrentMoneyTxt.text = "Budget: " + dataInstance.currentMoney.ToString();
-        DaysLeftTxt.text = "Days Left: " + dataInstance.daysLeft.ToString();
-        GasTxt.text = "Gas: " + dataInstance.gasNum.ToString();
-        DistanceTxt.text = "Current Progress: " + dataInstance.currentProgress.ToString() + "%";
+        DriverTxt.text = dataInstance.username;
+        //HealthTxt.text = dataInstance.userHealth.ToString();
+        CurrentMoneyTxt.text = dataInstance.currentMoney.ToString();
+        DaysLeftTxt.text = dataInstance.daysLeft.ToString();
+        GasTxt.text = dataInstance.gasNum.ToString();
+        //DistanceTxt.text = dataInstance.currentProgress.ToString() + "%";
     }
 
     /// <summary>
