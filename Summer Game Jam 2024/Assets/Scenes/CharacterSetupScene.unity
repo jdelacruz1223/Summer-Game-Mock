@@ -2882,11 +2882,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1868493070}
+      objectReference: {fileID: 745713442}
     - target: {fileID: 7083250838115785309, guid: 9bded751ba8130948b1c667fe724172b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextScene
+      value: FinishCharacterSetup
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083250838115785309, guid: 9bded751ba8130948b1c667fe724172b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CharacterSetupManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7613232638024214267, guid: 9bded751ba8130948b1c667fe724172b,
         type: 3}

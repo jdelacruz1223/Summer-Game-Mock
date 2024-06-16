@@ -16,6 +16,7 @@ public class Manager : MonoBehaviour
     /// <summary>
     /// All In Game Item Variables
     /// </summary>
+    [SerializeField] public townLocations currentDestination { get; private set; }
     [SerializeField] public int tiresNum { get; private set; }
     [SerializeField] public int snacksNum { get; private set; }
     [SerializeField] public int booksNum { get; private set; }
@@ -39,6 +40,15 @@ public class Manager : MonoBehaviour
     public float pismoToMontereyTime { get; private set; }
     public float montereyToSFTime { get; private set; }
     public int relicsNum { get; private set; }
+
+    public enum townLocations
+    {
+        Home,
+        Solvang,
+        Pismo,
+        Monterey,
+        SanFrancisco
+    }
 
     public static Manager GetInstance() { return me; }
 
@@ -73,9 +83,19 @@ public class Manager : MonoBehaviour
         gameNum = 0;
         drugsNum = 0;
 
+        currentDestination = townLocations.Solvang;
+
         daysLeft = 5;
         gasNum = 100;
         userHealth = 100;
+
+        totalTime = 0;
+        homeToSolvangTime = 0;
+        solvangToPismoTime = 0;
+        pismoToMontereyTime = 0;
+        montereyToSFTime = 0;
+
+        relicsNum = 0;
     }
 
     int lessCheck(int initial, int new_value) { int val = initial - new_value; if (val >= 0) return val; else return 0; }
@@ -109,6 +129,8 @@ public class Manager : MonoBehaviour
 
     public void increaseDrugsCount(int value) => drugsNum += value;
     public void decreaseDrugsCount(int value) => drugsNum = lessCheck(drugsNum, value);
+
+    public void setDestination(townLocations town) => currentDestination = town;
     #endregion
 
     #region GAMEPLAY

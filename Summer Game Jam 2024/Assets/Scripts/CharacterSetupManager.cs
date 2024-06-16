@@ -71,8 +71,10 @@ public class CharacterSetupManager : MonoBehaviour
 
     public void FinishCharacterSetup()
     {
-        Destroy(this.gameObject);
+        Manager.GetInstance().setUsername(username);
+
         SceneManager.LoadScene("TravelScene");
+        Destroy(this.gameObject);
     }
 
     public void setName() => username = nameTxt.text;
