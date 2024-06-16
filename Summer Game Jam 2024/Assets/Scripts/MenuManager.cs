@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,12 +19,13 @@ public class MenuManager : MonoBehaviour
     public void StartGame()
     {
         //Debug.Log("StartGame method called");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(1);
     }
 
     public void EndGame()
     {
-        //Debug.Log("EndGame method called");
+        Debug.Log("Quitting");
         Application.Quit();
     }
 
@@ -41,5 +43,10 @@ public class MenuManager : MonoBehaviour
     public void OpenSettings()
     {
         settingsPanel.SetActive(true);
+    }
+
+    public void NextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
