@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterSetupManager : MonoBehaviour
 {
@@ -20,14 +21,6 @@ public class CharacterSetupManager : MonoBehaviour
     {
         partyNames = new List<string>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
 
     IEnumerator RefreshPartyList()
     {
@@ -78,7 +71,8 @@ public class CharacterSetupManager : MonoBehaviour
 
     public void FinishCharacterSetup()
     {
-
+        Destroy(this.gameObject);
+        SceneManager.LoadScene("TravelScene");
     }
 
     public void setName() => username = nameTxt.text;

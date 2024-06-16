@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TownTemplate.unity
     guid: 8b43c4ef8dbb15c41b95aa55a2106cef
+  - enabled: 1
+    path: Assets/Scenes/CharacterSetupScene.unity
+    guid: c6961b22e0ef50f438279f906eb5477a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1966fd213e87cf943bac03d08eaf24a4,
       type: 2}
