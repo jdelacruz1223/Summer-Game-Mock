@@ -1066,9 +1066,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8236431107221197511, guid: a66d794c46e6f6d4786c8178d91de721,
         type: 3}
+      propertyPath: volume
+      value: 0.212
+      objectReference: {fileID: 0}
+    - target: {fileID: 8236431107221197511, guid: a66d794c46e6f6d4786c8178d91de721,
+        type: 3}
       propertyPath: backgroundMusicClip
       value: 
-      objectReference: {fileID: 8300000, guid: e0477e1a3f797d344b069ef65e92e52e, type: 3}
+      objectReference: {fileID: 8300000, guid: e14cd02a2c1b06e4cb5f625ea75d7929, type: 3}
     - target: {fileID: 8242800634566816322, guid: a66d794c46e6f6d4786c8178d91de721,
         type: 3}
       propertyPath: GameUI
