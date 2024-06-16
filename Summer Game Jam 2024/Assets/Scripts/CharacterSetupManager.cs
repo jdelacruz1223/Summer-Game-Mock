@@ -59,6 +59,8 @@ public class CharacterSetupManager : MonoBehaviour
         Manager.GetInstance().addToParty(partyName);
         partyNames.Add(partyName);
         StartCoroutine(RefreshPartyList());
+
+        partyTxt.text = "";
     }
     public void RemoveFromParty(int x) {
         partyNames.RemoveAt(x);
