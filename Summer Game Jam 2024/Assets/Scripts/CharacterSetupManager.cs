@@ -30,6 +30,7 @@ public class CharacterSetupManager : MonoBehaviour
 
         foreach (Transform child in partyListPanel.transform)
         {
+            
             if (child.gameObject.name != "TextFormat")
                 Destroy(child.gameObject);
         }
