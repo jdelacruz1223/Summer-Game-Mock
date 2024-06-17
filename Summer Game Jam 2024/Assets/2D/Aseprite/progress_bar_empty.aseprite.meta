@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bb31505e212ee75499c1e065addee0d5
+guid: f732dfb30e292834faa4e5db200009b5
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638541863257886343
+  platformSettingsDirtyTick: 638541841691093272
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: travel_UI_backdrop
+  - name: progress_bar_empty
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
-    border: {x: 65, y: 94, z: 65, w: 144}
+    border: {x: 13, y: 16, z: 13, w: 16}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 480
-      height: 270
-    spriteID: 85e3d2efa62807e4da942d10f9f61af0
+      width: 32
+      height: 32
+    spriteID: ec6dfcc9bd4b9bf4ba5f6e2e68e2548d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,21 +144,21 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1014044828
-    name: travel_UI_backdrop
+    guid: -1322486399
+    name: progress_bar_empty
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: travel_UI_backdrop
+    - name: progress_bar_empty
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 480
-        height: 270
-      spriteId: 85e3d2efa62807e4da942d10f9f61af0
+        width: 32
+        height: 32
+      spriteId: ec6dfcc9bd4b9bf4ba5f6e2e68e2548d
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -189,4 +189,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 480, y: 270}
+  canvasSize: {x: 32, y: 32}
