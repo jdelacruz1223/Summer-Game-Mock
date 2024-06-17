@@ -26,9 +26,16 @@ public class AudioManager : MonoBehaviour
         PlayBackgroundMusic(); // Start playing the background music
     }
 
+    private void Start()
+    {
+       
+    }
+
     void Update()
     {
-        // Update the volume in real-time
+        if (Manager.GetInstance() != null)
+            volume = Manager.GetInstance().audioVolume;
+
         audioSource.volume = volume;
     }
 

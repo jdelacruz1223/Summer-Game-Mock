@@ -48,6 +48,8 @@ public class ScrollEffectScript : MonoBehaviour
 
     void Update()
     {
+        if (RandomEncounterManager.GetInstance().currentlyInEncounter) return;
+
         foreach (GameObject segment in roadSegments)
         {
             segment.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
