@@ -1207,7 +1207,7 @@ PrefabInstance:
     - target: {fileID: 8160443057787121550, guid: 91d53d20745020e46815125c4e518a93,
         type: 3}
       propertyPath: m_text
-      value: TITLE
+      value: VISTA
       objectReference: {fileID: 0}
     - target: {fileID: 8160443057787121550, guid: 91d53d20745020e46815125c4e518a93,
         type: 3}
@@ -1619,7 +1619,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723740032}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
