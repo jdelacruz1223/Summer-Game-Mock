@@ -25,7 +25,7 @@ public class CharacterSetupManager : MonoBehaviour
     IEnumerator RefreshPartyList()
     {
 
-        float distBetweenText = 15f;
+        float distBetweenText = 10f;
         int index = 0;
 
         foreach (Transform child in partyListPanel.transform)
@@ -39,8 +39,6 @@ public class CharacterSetupManager : MonoBehaviour
 
         foreach (var name in partyNames)
         {
-            Debug.Log(name);
-
             TextMeshProUGUI text = Instantiate(partyTextFormat, partyListPanel.transform);
             text.gameObject.SetActive(true);
 

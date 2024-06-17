@@ -1,4 +1,6 @@
+using Assets.Model;
 using Assets.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +11,7 @@ public class Manager : MonoBehaviour
     /// Intro Setup Variables
     /// </summary>
     public string username { get; private set; }
-    public List<string> party { get; private set; }
+    [SerializeField] public List<PartyModel> party { get; private set; }
     public int budget { get; private set; }
     [SerializeField] public int currentMoney { get; private set; }
 
@@ -40,6 +42,9 @@ public class Manager : MonoBehaviour
     public float pismoToMontereyTime { get; private set; }
     public float montereyToSFTime { get; private set; }
     public int relicsNum { get; private set; }
+
+    // Settings
+    public float audioVolume { get; private set; }
 
     public enum townLocations
     {
@@ -72,7 +77,7 @@ public class Manager : MonoBehaviour
 
     void InitializeGame()
     {
-        party = new List<string>();
+        party = new List<PartyModel>();
 
         budget = 500;
         currentMoney = budget;
@@ -96,18 +101,67 @@ public class Manager : MonoBehaviour
         montereyToSFTime = 0;
 
         relicsNum = 0;
+
+        // Settings
+        audioVolume = 0.5f;
     }
 
     int lessCheck(int initial, int new_value) { int val = initial - new_value; if (val >= 0) return val; else return 0; }
 
+    #region PARTY FUNCTIONS
+    public void AddMember(PartyModel newMember)
+    {
+        if (party.Exists(m => m.Name == newMember.Name))
+        {
+            Debug.Log("Member with this name already exists.");
+        }
+        else
+        {
+            party.Add(newMember);
+            Debug.Log($"{newMember.Name} has been added to the party.");
+        }
+    }
+
+    void RemoveMember(string name)
+    {
+        PartyModel member = party.Find(m => m.Name == name);
+        if (member != null)
+        {
+            party.Remove(member);
+            Debug.Log($"{name} has been removed from the party.");
+        }
+        else
+        {
+            Debug.Log("Member not found.");
+        }
+    }
+
+    public void changeHealthToMember(string name, float healthToAdd)
+    {
+        PartyModel member = party.Find(m => m.Name == name);
+        if (member != null)
+        {
+            if ((member.Health + healthToAdd) > 100 || (member.Health + healthToAdd) < 0) return;
+
+            member.Health += healthToAdd;
+        }
+        else
+        {
+            Console.WriteLine("Member not found.");
+        }
+    }
+    #endregion
+
     #region INTRO SETUP
     public void setUsername(string name) => username = name;
-    public bool addToParty(string name) { if (!party.Contains(name)) { party.Add(name); return true; } else return false; }
-    public bool removeToParty(string name) => party.Remove(name);
+    public void addToParty(string name) { AddMember(new PartyModel { Name = name, Health = 100 }); }
+    public void removeToParty(string name) => RemoveMember(name);
 
     public void setBudget(int value) => budget = value;
     public void increaseMoneyCount(int value) { currentMoney += value; }
     public void decreaseMoneyCount(int value) => currentMoney = lessCheck(currentMoney, value);
+    public void increaseHealthToMember(string name, float value) => changeHealthToMember(name, value);
+    public void decreaseHealthToMember(string name, float value) => changeHealthToMember(name, -value);
     #endregion
 
     #region IN GAME ITEMS
@@ -152,5 +206,9 @@ public class Manager : MonoBehaviour
     }
 
     public void setCurrentProgress(float value) => currentProgress = value;
+    #endregion
+
+    #region Settings
+    public void SetAudioVolume(float value) => audioVolume = value;
     #endregion
 }

@@ -31,8 +31,7 @@ public class BackgroundMusic : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    // Called whenever a scene is loaded
-    void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
+    void Update()
     {
         // Determine which clip to play based on scene name
         AudioClip clipToPlay = null;

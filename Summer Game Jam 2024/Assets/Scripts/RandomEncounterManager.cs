@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Model;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +8,14 @@ namespace Assets.Scripts
 {
     public class RandomEncounterManager : MonoBehaviour
     {
+        [Header("Random Encounter")]
         [SerializeField] List<TextAsset> Stories;
         public int secondsPerEncounter;
         public float encounterPercentage;
+
+        [Header("Food Check Encounter")]
+        public int secondsPerFoodCheck;
+        public float foodCheckPercentage;
 
         public bool currentlyInEncounter { get; set; }
 
@@ -26,6 +32,7 @@ namespace Assets.Scripts
         {
             currentlyInEncounter = false;
             StartCoroutine(RandomEncounter());
+            StartCoroutine(FoodCheck());
         }
 
         private void Update()
@@ -33,8 +40,6 @@ namespace Assets.Scripts
             // Once it reaches somewhere 95% delete this script so that it doesn't spawn any more random encounters.
             if (Manager.GetInstance().currentProgress == 95) Destroy(this);
         }
-
-       
 
         IEnumerator RandomEncounter()
         {
@@ -55,6 +60,32 @@ namespace Assets.Scripts
                     }
                 }
                 
+                yield return null;
+            }
+        }
+
+        IEnumerator FoodCheck()
+        {
+            if (Manager.GetInstance().party.Count == 0) yield return null;
+
+            while (true)
+            {
+                if (Manager.GetInstance().currentProgress != 100)
+                {
+                    yield return new WaitForSeconds(secondsPerFoodCheck);
+                    if (Random.value <= foodCheckPercentage / 100)
+                    {
+                        List<PartyModel> partyList = Manager.GetInstance().party;
+
+                        int index = Random.Range(0, partyList.Count);
+                        PartyModel chosenMember = partyList[index];
+
+                        Manager.GetInstance().decreaseSnackCount(1);
+                        Manager.GetInstance().increaseHealthToMember(chosenMember.Name, 1);
+
+                        Debug.Log($"{chosenMember.Name} took 1 snack. HP += 1");
+                    }
+                }
                 yield return null;
             }
         }
