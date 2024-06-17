@@ -3902,7 +3902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusicClip: {fileID: 8300000, guid: e14cd02a2c1b06e4cb5f625ea75d7929, type: 3}
-  volume: 0.02
+  volume: 0.204
 --- !u!114 &8242800635050939184
 MonoBehaviour:
   m_ObjectHideFlags: 0
