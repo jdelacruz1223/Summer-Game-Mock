@@ -19,6 +19,7 @@ public class GasManager : MonoBehaviour
 
     void BurnGas()
     {
+        if (Manager.GetInstance().currentProgress == 100) Destroy(this);
         if (RandomEncounterManager.GetInstance().currentlyInEncounter) return;
 
         var managerVar = Manager.GetInstance();

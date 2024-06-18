@@ -3,7 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField] public GameObject controlsPanel;
+    [SerializeField] public GameObject settingsPanel;
     [SerializeField] private SceneTransition sceneTransition;
+    private GameObject currentPanel;
+
 
     public void StartGame()
     {
@@ -27,5 +31,25 @@ public class MenuManager : MonoBehaviour
     {
         // Use SceneTransition to transition to the next scene
         sceneTransition.TransitionToScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void OpenControls()
+    {
+        controlsPanel.SetActive(true);
+        currentPanel = controlsPanel;
+        Debug.Log("Controls");
+    }
+
+    public void ClosePanel()
+    {
+        if(currentPanel == controlsPanel) controlsPanel.SetActive(false);
+        else if(currentPanel == settingsPanel) settingsPanel.SetActive(false);
+    }
+
+    public void OpenSettings()
+    {
+        settingsPanel.SetActive(true);
+        settingsPanel = controlsPanel;
+        Debug.Log("Settings");
     }
 }

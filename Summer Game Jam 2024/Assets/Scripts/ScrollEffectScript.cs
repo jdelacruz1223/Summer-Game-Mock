@@ -48,11 +48,6 @@ public class ScrollEffectScript : MonoBehaviour
         }
     }
 
-    void CompletedTravel()
-    {
-        Debug.Log("User finished!");
-    }
-
     void Update()
     {
         if (Manager.GetInstance().currentProgress == 100)
