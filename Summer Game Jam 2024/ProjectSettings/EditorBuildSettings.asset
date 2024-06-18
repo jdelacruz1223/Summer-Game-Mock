@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Party.unity
     guid: c6961b22e0ef50f438279f906eb5477a
   - enabled: 1
+    path: Assets/Scenes/PlanningScreen.unity
+    guid: b3907c5a61101484ca122d17487a06bb
+  - enabled: 1
     path: Assets/Scenes/MapScreen.unity
     guid: a5282d091b4796e4bad65670e2aad432
   - enabled: 1
