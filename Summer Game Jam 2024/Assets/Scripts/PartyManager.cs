@@ -53,6 +53,8 @@ public class PartyManager : MonoBehaviour
     {
         while (true)
         {
+            if (Manager.GetInstance().currentProgress == 100) Destroy(this);
+
             int randWait = Random.Range(1, 3);
             yield return new WaitForSeconds(randWait); // Wait for 1 second
             List<PartyModel> partyList = Manager.GetInstance().party;
