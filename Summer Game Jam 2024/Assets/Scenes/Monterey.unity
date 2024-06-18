@@ -198,6 +198,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1832786379}
     m_Modifications:
+    - target: {fileID: 1568405721518301194, guid: 9bded751ba8130948b1c667fe724172b,
+        type: 3}
+      propertyPath: m_text
+      value: Travel
+      objectReference: {fileID: 0}
     - target: {fileID: 5057373803929847607, guid: 9bded751ba8130948b1c667fe724172b,
         type: 3}
       propertyPath: m_Name
@@ -207,11 +212,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1832786375}
+      objectReference: {fileID: 1832786380}
     - target: {fileID: 7083250838115785309, guid: 9bded751ba8130948b1c667fe724172b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextScene
+      value: LoadTravel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083250838115785309, guid: 9bded751ba8130948b1c667fe724172b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LoadTravelScene, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7613232638024214267, guid: 9bded751ba8130948b1c667fe724172b,
         type: 3}
@@ -591,6 +601,7 @@ GameObject:
   - component: {fileID: 1832786377}
   - component: {fileID: 1832786376}
   - component: {fileID: 1832786375}
+  - component: {fileID: 1832786380}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -697,6 +708,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1832786380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832786374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2664351609703a54a8a514d1bd6d65f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1834416896
 GameObject:
   m_ObjectHideFlags: 0
