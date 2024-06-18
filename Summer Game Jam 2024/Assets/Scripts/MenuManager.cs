@@ -49,7 +49,7 @@ public class MenuManager : MonoBehaviour
     public void OpenSettings()
     {
         settingsPanel.SetActive(true);
-        settingsPanel = controlsPanel;
+        currentPanel = settingsPanel;
         Debug.Log("Settings");
     }
 }

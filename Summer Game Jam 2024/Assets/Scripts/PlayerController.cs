@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     
     public LayerMask terrainLayer;
     public Rigidbody rb;
+    public SpriteRenderer sr;
+    public Animator animator;
 
     void Start()
     {
@@ -39,5 +41,15 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxis("Vertical");
         Vector3 movDir = new Vector3(x, 0, y);
         rb.velocity = movDir * speed;
+
+
+        if (x != 0 || y != 0) animator.SetBool("isWalking", true);
+        else animator.SetBool("isWalking", false);
+
+        if (x != 0 && x < 0)
+            sr.flipX = true;
+
+        else if (x != 0 && x > 0)
+            sr.flipX = false;
     }
 }
