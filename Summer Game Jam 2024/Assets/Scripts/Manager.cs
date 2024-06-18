@@ -190,6 +190,7 @@ public class Manager : MonoBehaviour
     #region GAMEPLAY
     public void decreaseDaysLeftCount() => daysLeft -= 1;
 
+    public void setGasCount(float value) => gasNum = value;
     public void increaseGasCount(float value) => gasNum += value;
     public void decreaseGasCount(float value)
     {
