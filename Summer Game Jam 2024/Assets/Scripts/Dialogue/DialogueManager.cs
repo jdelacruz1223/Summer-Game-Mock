@@ -24,6 +24,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject[] encountersChoices;
     [SerializeField] private GameObject encountersPanel;
     [SerializeField] private TextMeshProUGUI encounterText;
+    [SerializeField] private TextMeshProUGUI encounterTitleText;
 
     public bool randomEncounterPlaying { get; set; }
 
@@ -110,6 +111,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         randomEncounterPlaying = true;
         encountersPanel.SetActive(true);
+        encounterTitleText.text = currentStory.globalTags[0];
 
         if (currentStory.canContinue)
         {
