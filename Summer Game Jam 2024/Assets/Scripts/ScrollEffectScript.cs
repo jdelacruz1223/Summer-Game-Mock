@@ -10,6 +10,8 @@ public class ScrollEffectScript : MonoBehaviour
     public float segmentLength = 10f; // Length of each road segment
     public int initialSegmentCount = 5; // Initial number of road segments
 
+    public GameObject carObject;
+
     private Queue<GameObject> roadSegments;
     private Camera mainCamera;
     private float cameraWidth;
@@ -46,9 +48,18 @@ public class ScrollEffectScript : MonoBehaviour
         }
     }
 
+    void CompletedTravel()
+    {
+        Debug.Log("User finished!");
+    }
+
     void Update()
     {
-        if (Manager.GetInstance().currentProgress == 100) return;
+        if (Manager.GetInstance().currentProgress == 100)
+        {
+            carObject.transform.Translate(Vector3.left * 35f * Time.deltaTime);
+            return;
+        }
         if (RandomEncounterManager.GetInstance().currentlyInEncounter) return;
 
         foreach (GameObject segment in roadSegments)
