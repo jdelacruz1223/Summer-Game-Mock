@@ -1,26 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] public GameObject controlsPanel;
-    [SerializeField] public GameObject settingsPanel;
-
-    void Start()
-    {
-        // controlsPanel = GetComponent<GameObject>();
-        // settingsPanel = GetComponent<GameObject>();
-    }
+    [SerializeField] private SceneTransition sceneTransition;
 
     public void StartGame()
     {
-        //Debug.Log("StartGame method called");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene(1);
+        // Use SceneTransition to transition to the game scene
+        sceneTransition.TransitionToScene(1);
     }
 
     public void EndGame()
@@ -31,22 +19,13 @@ public class MenuManager : MonoBehaviour
 
     public void RestartGame()
     {
-        //Debug.Log("RestartGame method called");
-        SceneManager.LoadScene(0);
-    }
-
-    public void OpenControls()
-    {
-        controlsPanel.SetActive(true);
-    }
-
-    public void OpenSettings()
-    {
-        settingsPanel.SetActive(true);
+        // Use SceneTransition to transition to the start menu scene (assuming index 0)
+        sceneTransition.TransitionToScene(0);
     }
 
     public void NextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // Use SceneTransition to transition to the next scene
+        sceneTransition.TransitionToScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

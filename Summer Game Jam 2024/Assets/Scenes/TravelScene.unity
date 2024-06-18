@@ -341,6 +341,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Progress
       objectReference: {fileID: 0}
+    - target: {fileID: 1945825895382030107, guid: 8c79d1253581e30418e6a092c1b2a999,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2829760683782171792, guid: 8c79d1253581e30418e6a092c1b2a999,
         type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
@@ -435,6 +440,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 11.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384954141822725762, guid: 8c79d1253581e30418e6a092c1b2a999,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8476017316926638504, guid: 8c79d1253581e30418e6a092c1b2a999,
         type: 3}
@@ -1521,7 +1531,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549207435}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2575,7 +2585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1490223657
 RectTransform:
   m_ObjectHideFlags: 0
