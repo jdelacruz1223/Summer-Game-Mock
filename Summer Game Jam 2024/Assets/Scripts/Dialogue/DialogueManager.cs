@@ -111,7 +111,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         randomEncounterPlaying = true;
         encountersPanel.SetActive(true);
-        encounterTitleText.text = currentStory.globalTags[0];
+
 
         if (currentStory.canContinue)
         {
@@ -119,6 +119,8 @@ public class DialogueManager : MonoBehaviour
 
             choicesText = new TextMeshProUGUI[encountersChoices.Length];
             int index = 0;
+
+            encounterTitleText.text = currentStory.globalTags[0];
 
             foreach (GameObject choice in encountersChoices)
             {
