@@ -32,6 +32,8 @@ namespace Assets.Scripts
         {
             currentlyInEncounter = false;
             StartCoroutine(RandomEncounter());
+            
+            if (Manager.GetInstance().party.Count == 0) return;
             StartCoroutine(FoodCheck());
         }
 
@@ -66,8 +68,6 @@ namespace Assets.Scripts
 
         IEnumerator FoodCheck()
         {
-            if (Manager.GetInstance().party.Count == 0) yield return null;
-
             while (true)
             {
                 if (Manager.GetInstance().currentProgress != 100)
@@ -82,8 +82,6 @@ namespace Assets.Scripts
 
                         Manager.GetInstance().decreaseSnackCount(1);
                         Manager.GetInstance().increaseHealthToMember(chosenMember.Name, 1);
-
-                        Debug.Log($"{chosenMember.Name} took 1 snack. HP += 1");
                     }
                 }
                 yield return null;

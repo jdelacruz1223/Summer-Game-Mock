@@ -8,36 +8,29 @@ using UnityEngine.UI;
 public class PartyManager : MonoBehaviour
 {
     [Header("Party Members")]
-    public GameObject partyPanel;
-    public GameObject playerPanel;
-    List<GameObject> playerPanelSequence;
-    public float distanceBetweenMembers = 5f;
+    public List<GameObject> partyPlayers;
 
     void Start()
     {
-        List<PartyModel> partylist = Manager.GetInstance().party;
-        playerPanelSequence = new List<GameObject>();
+        List<PartyModel> partyList = Manager.GetInstance().party;
 
-        int index = 1;
-        foreach (PartyModel party in partylist)
+        if (partyList.Count == 0) return;
+        Debug.Log(partyPlayers);
+        
+        int index = 0;
+        foreach (var player in partyList)
         {
-            var obj = Instantiate(playerPanel, partyPanel.transform);
-            obj.SetActive(true);
+            Debug.Log(player.Name);
 
-            var text = obj.GetComponentInChildren<TextMeshProUGUI>();
-            var slider = obj.GetComponentInChildren<Slider>();
+            var partyIndex = partyPlayers[index];
+            var nameTxt = partyIndex.GetComponentInChildren<TextMeshProUGUI>();
+            var hpBar = partyIndex.GetComponentInChildren<Slider>();
 
-            text.text = party.Name;
-            slider.value = party.Health;
+            nameTxt.text = player.Name;
+            hpBar.value = player.Health / 100;
 
-            RectTransform playerPanelRectTransform = playerPanel.GetComponent<RectTransform>();
+            partyPlayers[index].SetActive(true);
 
-
-            RectTransform rectTransform = obj.GetComponent<RectTransform>();
-
-            rectTransform.anchoredPosition = new Vector2((playerPanelRectTransform.position.x * index) * distanceBetweenMembers, 0);
-            
-            playerPanelSequence.Add(obj);
             index++;
         }
     }
