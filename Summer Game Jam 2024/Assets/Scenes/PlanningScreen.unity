@@ -592,8 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c86a37ad10817449a1537ba86ebf53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlsPanel: {fileID: 0}
-  settingsPanel: {fileID: 0}
+  sceneTransition: {fileID: 0}
 --- !u!1001 &2091640506
 PrefabInstance:
   m_ObjectHideFlags: 0
