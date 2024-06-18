@@ -48,6 +48,7 @@ public class ScrollEffectScript : MonoBehaviour
 
     void Update()
     {
+        if (Manager.GetInstance().currentProgress == 100) return;
         if (RandomEncounterManager.GetInstance().currentlyInEncounter) return;
 
         foreach (GameObject segment in roadSegments)

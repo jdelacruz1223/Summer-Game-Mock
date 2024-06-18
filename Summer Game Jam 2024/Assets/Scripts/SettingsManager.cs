@@ -8,5 +8,5 @@ public class SettingsManager : MonoBehaviour
 
     public Slider audioSlider;
 
-    public void SetAudioVolume(float volume) => Manager.GetInstance().SetAudioVolume(audioSlider.value);
+    public void SetAudioVolume() => Manager.GetInstance().SetAudioVolume(audioSlider.value);
 }

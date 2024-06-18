@@ -31,8 +31,10 @@ public class BackgroundMusic : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void Update()
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+
         // Determine which clip to play based on scene name
         AudioClip clipToPlay = null;
 
@@ -54,7 +56,7 @@ public class BackgroundMusic : MonoBehaviour
                 clipToPlay = MusicClips[4];
                 break;
             default:
-                clipToPlay = MusicClips[2]; // Default clip if scene name doesn't match
+                clipToPlay = MusicClips[2];
                 break;
         }
 
@@ -65,5 +67,11 @@ public class BackgroundMusic : MonoBehaviour
             Audio.clip = clipToPlay;
             Audio.Play();
         }
+    }
+
+    void Update()
+    {
+        if (Manager.GetInstance() != null)
+            Audio.volume = Manager.GetInstance().audioVolume;
     }
 }
