@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 8160443057787121550, guid: 91d53d20745020e46815125c4e518a93,
         type: 3}
       propertyPath: m_text
-      value: 'Travel
+      value: 'NEXT
 
 '
       objectReference: {fileID: 0}
