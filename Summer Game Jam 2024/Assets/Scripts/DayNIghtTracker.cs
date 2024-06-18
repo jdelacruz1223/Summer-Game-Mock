@@ -2,23 +2,25 @@ using UnityEngine;
 
 public class DayNightCycle : MonoBehaviour
 {
-    public float fullDayLengthInSeconds = 120f; // Length of a full day in seconds
-    public Light sun; // Directional light representing the sun
-    public Gradient sunColorGradient; // Gradient for sun color at different times of day
+    public float fullDayLength = 100.0f;  // Length of a full day in custom units (0 to 100)
+    public float speed = 1.0f;            // Speed of time progression
+    private float currentTime = 0.0f;     // Current time in custom units
+
+    public Light sun;                     // Directional light representing the sun
+    public Gradient sunColorGradient;     // Gradient for sun color at different times of day
 
     private enum DayPhase { Night, Dawn, Day, Dusk }
     private DayPhase currentPhase = DayPhase.Night;
-    private float currentTimeOfDay = 0f; // Current time of day in seconds
 
     void Update()
     {
-        // Update the time of day
-        currentTimeOfDay += Time.deltaTime;
+        // Update time based on speed and time
+        currentTime += speed * Time.deltaTime;
 
-        // Normalize current time of day to [0, fullDayLengthInSeconds] range
-        if (currentTimeOfDay > fullDayLengthInSeconds)
+        // Clamp time to a full day and reset if it exceeds
+        if (currentTime > fullDayLength)
         {
-            currentTimeOfDay -= fullDayLengthInSeconds;
+            currentTime = 0.0f;  // Reset to 0 (dawn)
         }
 
         // Determine current phase based on time of day
@@ -30,7 +32,7 @@ public class DayNightCycle : MonoBehaviour
 
     void UpdatePhase()
     {
-        float ratio = currentTimeOfDay / fullDayLengthInSeconds;
+        float ratio = currentTime / fullDayLength;
 
         if (ratio < 0.25f)
         {
@@ -58,24 +60,33 @@ public class DayNightCycle : MonoBehaviour
         switch (currentPhase)
         {
             case DayPhase.Night:
-                angle = Mathf.Lerp(-90f, 0f, currentTimeOfDay / (fullDayLengthInSeconds * 0.25f));
-                sunColor = Color.black;
+                angle = Mathf.Lerp(-90f, 0f, currentTime / (fullDayLength * 0.25f));
+                sunColor = sunColorGradient.Evaluate(0.0f);  // Night color
                 break;
             case DayPhase.Dawn:
-                angle = Mathf.Lerp(0f, 90f, (currentTimeOfDay - fullDayLengthInSeconds * 0.25f) / (fullDayLengthInSeconds * 0.25f));
-                sunColor = sunColorGradient.Evaluate((currentTimeOfDay - fullDayLengthInSeconds * 0.25f) / (fullDayLengthInSeconds * 0.25f));
+                angle = Mathf.Lerp(0f, 90f, (currentTime - fullDayLength * 0.25f) / (fullDayLength * 0.25f));
+                sunColor = sunColorGradient.Evaluate((currentTime - fullDayLength * 0.25f) / (fullDayLength * 0.25f));  // Dawn color
                 break;
             case DayPhase.Day:
-                angle = Mathf.Lerp(90f, 180f, (currentTimeOfDay - fullDayLengthInSeconds * 0.5f) / (fullDayLengthInSeconds * 0.25f));
-                sunColor = sunColorGradient.Evaluate((currentTimeOfDay - fullDayLengthInSeconds * 0.5f) / (fullDayLengthInSeconds * 0.25f));
+                angle = Mathf.Lerp(90f, 180f, (currentTime - fullDayLength * 0.5f) / (fullDayLength * 0.25f));
+                sunColor = sunColorGradient.Evaluate((currentTime - fullDayLength * 0.5f) / (fullDayLength * 0.25f));  // Day color
                 break;
             case DayPhase.Dusk:
-                angle = Mathf.Lerp(180f, 270f, (currentTimeOfDay - fullDayLengthInSeconds * 0.75f) / (fullDayLengthInSeconds * 0.25f));
-                sunColor = sunColorGradient.Evaluate((currentTimeOfDay - fullDayLengthInSeconds * 0.75f) / (fullDayLengthInSeconds * 0.25f));
+                angle = Mathf.Lerp(180f, 270f, (currentTime - fullDayLength * 0.75f) / (fullDayLength * 0.25f));
+                sunColor = sunColorGradient.Evaluate((currentTime - fullDayLength * 0.75f) / (fullDayLength * 0.25f));  // Dusk color
                 break;
         }
 
         sun.transform.rotation = Quaternion.Euler(new Vector3(angle, 0f, 0f));
         sun.color = sunColor;
+
+        // Update the ambient light color to match the sun's color
+        RenderSettings.ambientLight = sunColor;
+    }
+
+    // Function to get the current time percentage
+    public float GetTimePercentage()
+    {
+        return currentTime / fullDayLength * 100.0f;
     }
 }
