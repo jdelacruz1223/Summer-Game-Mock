@@ -1087,7 +1087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &693075808
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1377,6 +1377,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896611731529873050, guid: edeb14e9ebe7e0a46b3c015c9a92d46e,
+        type: 3}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3948177059299076302, guid: edeb14e9ebe7e0a46b3c015c9a92d46e,
         type: 3}

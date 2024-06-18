@@ -2394,9 +2394,19 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3f38bb44c25a01949819f7eb75af5eb9, type: 2}
     - target: {fileID: 2170282488808913729, guid: 93530750bf3676a43ae977ef92908776,
         type: 3}
+      propertyPath: sr
+      value: 
+      objectReference: {fileID: 1709170268}
+    - target: {fileID: 2170282488808913729, guid: 93530750bf3676a43ae977ef92908776,
+        type: 3}
       propertyPath: speed
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2170282488808913729, guid: 93530750bf3676a43ae977ef92908776,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1709170267}
     - target: {fileID: 4243906801144801356, guid: 93530750bf3676a43ae977ef92908776,
         type: 3}
       propertyPath: m_Name
@@ -2440,8 +2450,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8557993659302726350, guid: 93530750bf3676a43ae977ef92908776,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1709170267}
   m_SourcePrefab: {fileID: 100100000, guid: 93530750bf3676a43ae977ef92908776, type: 3}
+--- !u!1 &1709170266 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8557993659302726350, guid: 93530750bf3676a43ae977ef92908776,
+    type: 3}
+  m_PrefabInstance: {fileID: 1709170265}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1709170267
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709170266}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 04b64a5756439b742bcf7931a63cc5b7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &1709170268 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1571676273082864115, guid: 93530750bf3676a43ae977ef92908776,
+    type: 3}
+  m_PrefabInstance: {fileID: 1709170265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1720079587 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 131104382822627147, guid: 93530750bf3676a43ae977ef92908776,

@@ -5857,6 +5857,15 @@ MonoBehaviour:
   speed: 2
   progressText: {fileID: 1180678041}
   progressBar: {fileID: 1515114839}
+  scenesToLoad:
+  - progressPercentage: 25
+    sceneIndex: 5
+  - progressPercentage: 50
+    sceneIndex: 6
+  - progressPercentage: 75
+    sceneIndex: 7
+  - progressPercentage: 100
+    sceneIndex: 8
 --- !u!114 &2621506057311620642
 MonoBehaviour:
   m_ObjectHideFlags: 0
