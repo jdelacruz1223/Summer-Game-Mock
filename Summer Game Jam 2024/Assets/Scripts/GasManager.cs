@@ -11,8 +11,7 @@ public class GasManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Manager.GetInstance().setGasCount(gasTankCapacity);
-
+        if (!(Manager.GetInstance().gasNum < 100)) Manager.GetInstance().setGasCount(gasTankCapacity);
         // Start the burning process
         InvokeRepeating("BurnGas", 1f, 1f);
     }
