@@ -17,9 +17,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
 
-        Debug.Log(Manager.GetInstance().playerSprite.sprite);
-        sr.sprite = Manager.GetInstance().playerSprite.sprite;
-        Manager.GetInstance().playerSprite.animator = new AnimatorOverrideController(animator.runtimeAnimatorController);
         animator.runtimeAnimatorController = Manager.GetInstance().playerSprite.animator;
     }
 

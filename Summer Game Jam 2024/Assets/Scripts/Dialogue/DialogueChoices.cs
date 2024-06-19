@@ -55,7 +55,6 @@ namespace Assets.Scripts.Dialogue
                             case "food":
                                 instance.increaseSnackCount(1);
                                 break;
-
                         }
                         break;
                     case "harm":
@@ -63,16 +62,19 @@ namespace Assets.Scripts.Dialogue
                         break;
 
                     case "tires":
-                        Debug.Log("DEBUG: " + param);
+                        Debug.Log("Dialogue Choices: " + param);
                         if (param.Contains("-"))
-                            instance.decreaseTireCount(int.Parse(param));
+                        {
+                            Debug.Log("result: " + param);
+                            instance.decreaseTireCount(int.Parse(param.ToString().Replace("-", "")));
+                        }
                         else
                             instance.increaseTireCount(int.Parse(param));
                         break;
 
                     case "food":
                         if (param.Contains("-"))
-                            instance.decreaseSnackCount(int.Parse(param));
+                            instance.decreaseSnackCount(int.Parse(param.ToString().Replace("-", "")));
                         else
                             instance.increaseSnackCount(int.Parse(param));
                         break;
@@ -86,7 +88,7 @@ namespace Assets.Scripts.Dialogue
                         break;
                     case "medicine":
                         if (param.Contains("-"))
-                            instance.decreaseMedicineCount(int.Parse(param));
+                            instance.decreaseMedicineCount(int.Parse(param.ToString().Replace("-", "")));
                         else
                             instance.increaseMedicineCount(int.Parse(param));
                         break;

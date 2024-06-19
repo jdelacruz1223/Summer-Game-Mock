@@ -78,6 +78,7 @@ public class MiniGame : MonoBehaviour
     {
         if (isMiniGameActive && !isWaitingForConfirmation && Input.GetKeyDown(KeyCode.Space))
         {
+
             currentPresses++;
             Debug.Log("Spacebar pressed. Current presses: " + currentPresses);
 

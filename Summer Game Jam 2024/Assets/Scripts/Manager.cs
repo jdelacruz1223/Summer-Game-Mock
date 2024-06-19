@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
@@ -108,6 +109,14 @@ public class Manager : MonoBehaviour
 
         // Settings
         audioVolume = 0.5f;
+    }
+
+    public void ReplayGame()
+    {
+        encountersNum = 0;
+        fishCaughtNum = 0;
+
+        SceneManager.LoadScene(1);
     }
 
     int lessCheck(int initial, int new_value) { int val = initial - new_value; if (val >= 0) return val; else return 0; }
@@ -254,7 +263,7 @@ public class Manager : MonoBehaviour
     public void setCurrentProgress(float value) => currentProgress = value;
 
     public void increaseRandomEncounter() => encountersNum++;
-    public void increaseFishCaught() => encountersNum++;
+    public void increaseFishCaught() => fishCaughtNum++;
     #endregion
 
     #region Settings

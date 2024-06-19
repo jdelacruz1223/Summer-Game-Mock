@@ -49,6 +49,12 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         UIManager.GetInstance().ControlUI(dialoguePanel, false);
+
+        // Ensure the EventSystem is available and set up early
+        if (EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
     }
 
     IEnumerator triggerCheck()
@@ -240,11 +246,23 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator SelectFirstChoice()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        yield return new WaitForEndOfFrame();
-        var choice_button = choices[0].gameObject;
-        if (randomEncounterPlaying) choice_button = encountersChoices[0].gameObject;
-        EventSystem.current.SetSelectedGameObject(choice_button);
+        yield return new WaitForSeconds(0.5f);
+
+        if (EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            yield return new WaitForEndOfFrame();
+
+            var choiceButton = choices[0].gameObject;
+            if (randomEncounterPlaying)
+                choiceButton = encountersChoices[0].gameObject;
+
+            EventSystem.current.SetSelectedGameObject(choiceButton);
+        }
+        else
+        {
+            Debug.LogWarning("EventSystem is not available.");
+        }
     }
 
     public void MakeChoice(int choiceIndex)

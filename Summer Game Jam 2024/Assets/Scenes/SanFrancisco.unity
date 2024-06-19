@@ -1504,7 +1504,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 590733272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc1a8d39d8999cb4eaf4e8c672339d64, type: 3}
+  m_Script: {fileID: 11500000, guid: 142161277c07b6c4bb6b4f65279fa28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   totalTimeTxt: {fileID: 1814346431}
@@ -27508,7 +27508,7 @@ PrefabInstance:
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
@@ -27519,7 +27519,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 590733273}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -27533,12 +27533,17 @@ PrefabInstance:
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClosePanel
+      value: ReplayGame
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EndHandlerManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
@@ -28274,7 +28279,7 @@ PrefabInstance:
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
@@ -28283,9 +28288,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 590733273}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -28298,8 +28308,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClosePanel
+      value: QuitGame
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
@@ -28308,7 +28323,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EndHandlerManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.AudioSource, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: UnityEngine.AudioSource, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
@@ -54423,7 +54448,7 @@ PrefabInstance:
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
@@ -54434,7 +54459,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 590733273}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -54448,12 +54473,17 @@ PrefabInstance:
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClosePanel
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EndHandlerManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
