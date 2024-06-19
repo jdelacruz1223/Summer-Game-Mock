@@ -75,12 +75,15 @@ public class Manager : MonoBehaviour
         InitializeGame();
     }
 
+    private void Update()
+    {
+    }
+
     void InitializeGame()
     {
         party = new List<PartyModel>();
 
-        budget = 500;
-        currentMoney = budget;
+        currentMoney = 500;
 
         tiresNum = 0;
         snacksNum = 0;
@@ -160,6 +163,7 @@ public class Manager : MonoBehaviour
     public void setBudget(int value) => budget = value;
     public void increaseMoneyCount(int value) { currentMoney += value; }
     public void decreaseMoneyCount(int value) => currentMoney = lessCheck(currentMoney, value);
+    public void setMoneyCount(int value) => currentMoney = value;
     public void increaseHealthToMember(string name, float value) => changeHealthToMember(name, value);
     public void decreaseHealthToMember(string name, float value) => changeHealthToMember(name, -value);
     #endregion
