@@ -55,6 +55,21 @@ public class BackgroundMusic : MonoBehaviour
             case "TravelScene":
                 clipToPlay = MusicClips[4];
                 break;
+            case "Monterey":
+                clipToPlay = MusicClips[5];
+                break;
+            case "Pismo":
+                clipToPlay = MusicClips[6];
+                break;
+            case "Solvang":
+                clipToPlay = MusicClips[7];
+                break;
+            case "SanFrancisco":
+                clipToPlay = MusicClips[8];
+                break;
+            case "Victory":
+                clipToPlay = MusicClips[9];
+                break;
             default:
                 clipToPlay = MusicClips[2];
                 break;
