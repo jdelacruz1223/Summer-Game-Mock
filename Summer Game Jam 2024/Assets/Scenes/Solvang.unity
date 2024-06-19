@@ -1024,6 +1024,94 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1001 &892873330
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04983992
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04983992
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.04983992
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.53
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.89
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071928
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7070209
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -270.014
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0,
+        type: 3}
+      propertyPath: m_Name
+      value: Gas Station
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fa2f1f3fd64e8c5439544ba52e6c1cd0, type: 3}
 --- !u!1001 &935596127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1200,7 +1288,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0.00007033348, z: 0}
   m_MaxChunkCount: 16
@@ -26618,3 +26706,4 @@ SceneRoots:
   - {fileID: 55988464}
   - {fileID: 1887190088}
   - {fileID: 1582500110}
+  - {fileID: 892873330}
