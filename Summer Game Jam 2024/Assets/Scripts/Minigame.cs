@@ -17,6 +17,9 @@ public class MiniGame : MonoBehaviour
     // Reference to the UI Image for displaying the fish image
     public Image fishImage;
 
+    // Reference to the UI Text for the start message
+    public Text startText;
+
     // RNG settings for spacebar presses
     public int minPresses = 10;
     public int maxPresses = 20;
@@ -34,6 +37,7 @@ public class MiniGame : MonoBehaviour
     {
         // Ensure promptCanvas starts inactive
         promptCanvas.SetActive(false);
+        startText.gameObject.SetActive(false); // Start text should initially be inactive
     }
 
     // Start the mini-game
@@ -45,6 +49,10 @@ public class MiniGame : MonoBehaviour
 
             Debug.Log("Starting mini-game. Required presses: " + requiredPresses);
 
+            // Show start text
+            startText.gameObject.SetActive(true);
+            startText.text = "Get ready! Press Spacebar to catch the fish.";
+
             // Show prompt UI above player's head
             promptCanvas.SetActive(true);
 
@@ -52,7 +60,17 @@ public class MiniGame : MonoBehaviour
             progressSlider.value = 0;
 
             isMiniGameActive = true;
+
+            // Start coroutine to hide start text after a brief delay
+            StartCoroutine(HideStartTextAfterDelay(3f)); // Hide after 3 seconds (adjust as needed)
         }
+    }
+
+    // Coroutine to hide start text after a delay
+    IEnumerator HideStartTextAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+       // startText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -87,13 +105,15 @@ public class MiniGame : MonoBehaviour
         congratulationText.text = "Congratulations, you caught a fish!\nSize: " + fishSize + " cm\nPress F to continue.";
 
         // Display random fish image
-        fishImage.gameObject.SetActive(true);
+        //fishImage.gameObject.SetActive(true);
         int randomFishIndex = Random.Range(0, fishSprites.Count);
         fishImage.sprite = fishSprites[randomFishIndex];
 
         // Wait for player confirmation
         while (true)
         {
+            startText.gameObject.SetActive(false);
+            fishImage.gameObject.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
                 break;
