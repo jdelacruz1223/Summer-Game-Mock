@@ -12,14 +12,15 @@
         -> ThirdChoice
         
 == FirstChoice ==
-#harm
-Yeah, that's an ostrich on the road.
+Yeah, that's an ostrich on the road. (Nothing happens)
 -> DONE
 == SecondChoice ==
-#harm
+#harmparty 10
+#tire -1
 The ostrich curiously approaches the vehicle and starts pecking at the tires. (-1 tires, PARTY happiness -1)
 -> DONE
 == ThirdChoice ==
-#harm
+#happyparty 10
+#food -2
 The party offers the animal some food. The ostrich gladly takes it out of your offering hands. (-2 food, PARTY happiness +1)
 -> DONE
