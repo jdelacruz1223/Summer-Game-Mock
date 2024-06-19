@@ -1,45 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] public GameObject controlsPanel;
     [SerializeField] public GameObject settingsPanel;
+    [SerializeField] private SceneTransition sceneTransition;
+    private GameObject currentPanel;
 
-    void Start()
-    {
-        // controlsPanel = GetComponent<GameObject>();
-        // settingsPanel = GetComponent<GameObject>();
-    }
 
     public void StartGame()
     {
-        //Debug.Log("StartGame method called");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // Use SceneTransition to transition to the game scene
+        sceneTransition.TransitionToScene(1);
     }
 
     public void EndGame()
     {
-        //Debug.Log("EndGame method called");
+        Debug.Log("Quitting");
         Application.Quit();
     }
 
     public void RestartGame()
     {
-        //Debug.Log("RestartGame method called");
-        SceneManager.LoadScene(0);
+        // Use SceneTransition to transition to the start menu scene (assuming index 0)
+        sceneTransition.TransitionToScene(0);
+    }
+
+    public void NextScene()
+    {
+        // Use SceneTransition to transition to the next scene
+        sceneTransition.TransitionToScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void OpenControls()
     {
         controlsPanel.SetActive(true);
+        currentPanel = controlsPanel;
+        Debug.Log("Controls");
+    }
+
+    public void ClosePanel()
+    {
+        if(currentPanel == controlsPanel) controlsPanel.SetActive(false);
+        else if(currentPanel == settingsPanel) settingsPanel.SetActive(false);
     }
 
     public void OpenSettings()
     {
         settingsPanel.SetActive(true);
+        currentPanel = settingsPanel;
+        Debug.Log("Settings");
     }
 }

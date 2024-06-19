@@ -1,0 +1,12 @@
+Font: monogram  Style: Regular
+Point Size: 416   SP/PD Ratio: 2.2%
+
+Characters included: 37/52
+Missing characters: 0
+Excluded characters: 0
+
+Characters missing from font file:
+----------------------------------------
+
+Characters excluded from packing:
+----------------------------------------

@@ -1,45 +1,92 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class AudioManager : MonoBehaviour
+public class BackgroundMusic : MonoBehaviour
 {
-    public static AudioManager instance;
+    // Singleton instance
+    static BackgroundMusic instance;
 
-    public AudioClip backgroundMusicClip;  // Drag your background music clip here in the Inspector
-    [Range(0f, 1f)]
-    public float volume = 0.5f;  // Volume slider
+    // Drag in the .mp3 files here, in the editor
+    public AudioClip[] MusicClips;
 
-    private AudioSource audioSource;
+    // Reference to the AudioSource component
+    public AudioSource Audio;
 
     void Awake()
     {
-
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
+        // Singleton pattern to keep only one instance alive
+        if (instance == null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>();
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
         }
 
-        audioSource.loop = true; // Loop the background music
-        audioSource.clip = backgroundMusicClip;
-        audioSource.volume = volume; // Set the initial volume
+        DontDestroyOnLoad(gameObject);
 
-        PlayBackgroundMusic(); // Start playing the background music
+        // Hooks up the 'OnSceneLoaded' method to the sceneLoaded event
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+
+        // Determine which clip to play based on scene name
+        AudioClip clipToPlay = null;
+
+        switch (scene.name)
+        {
+            case "MainMenu":
+                clipToPlay = MusicClips[0];
+                break;
+            case "Party":
+                clipToPlay = MusicClips[1];
+                break;
+            case "MapScreen":
+                clipToPlay = MusicClips[2];
+                break;
+            case "PlanningScreen":
+                clipToPlay = MusicClips[3];
+                break;
+            case "TravelScene":
+                clipToPlay = MusicClips[4];
+                break;
+            case "Monterey":
+                clipToPlay = MusicClips[5];
+                break;
+            case "Pismo":
+                clipToPlay = MusicClips[6];
+                break;
+            case "Solvang":
+                clipToPlay = MusicClips[7];
+                break;
+            case "SanFrancisco":
+                clipToPlay = MusicClips[8];
+                break;
+            case "Victory":
+                clipToPlay = MusicClips[9];
+                break;
+            default:
+                clipToPlay = MusicClips[2];
+                break;
+        }
+
+        // Only switch the music if it changed
+        if (clipToPlay != null && clipToPlay != Audio.clip)
+        {
+            Audio.Stop();
+            Audio.clip = clipToPlay;
+            Audio.Play();
+        }
     }
 
     void Update()
     {
-        // Update the volume in real-time
-        audioSource.volume = volume;
-    }
-
-    public void PlayBackgroundMusic()
-    {
-        if (audioSource.isPlaying) return; // If music is already playing, don't play it again
-        audioSource.Play();
-    }
-
-    public void StopBackgroundMusic()
-    {
-        audioSource.Stop();
+        if (Manager.GetInstance() != null)
+            Audio.volume = Manager.GetInstance().audioVolume;
     }
 }

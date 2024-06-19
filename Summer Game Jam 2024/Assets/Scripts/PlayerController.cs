@@ -9,10 +9,18 @@ public class PlayerController : MonoBehaviour
     
     public LayerMask terrainLayer;
     public Rigidbody rb;
+    public SpriteRenderer sr;
+    public Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
+
+        Debug.Log(Manager.GetInstance().playerSprite.sprite);
+        sr.sprite = Manager.GetInstance().playerSprite.sprite;
+        Manager.GetInstance().playerSprite.animator = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        animator.runtimeAnimatorController = Manager.GetInstance().playerSprite.animator;
     }
 
     void Update()
@@ -39,5 +47,15 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxis("Vertical");
         Vector3 movDir = new Vector3(x, 0, y);
         rb.velocity = movDir * speed;
+
+
+        if (x != 0 || y != 0) animator.SetBool("isWalking", true);
+        else animator.SetBool("isWalking", false);
+
+        if (x != 0 && x < 0)
+            sr.flipX = true;
+
+        else if (x != 0 && x > 0)
+            sr.flipX = false;
     }
 }

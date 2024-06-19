@@ -12,11 +12,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject DialoguePanel;
 
     [Header("Item UI")]
+    public TextMeshProUGUI DriverTxt;
     public TextMeshProUGUI HealthTxt;
     public TextMeshProUGUI CurrentMoneyTxt;
     public TextMeshProUGUI DaysLeftTxt;
     public TextMeshProUGUI GasTxt;
-    public TextMeshProUGUI DistanceTxt;
+
+    [Header("Supplies Index UI")]
+    public TextMeshProUGUI tiresIndexTxt;
+    public TextMeshProUGUI foodIndexTxt;
+    public TextMeshProUGUI fishbaitIndexTxt;
+    public TextMeshProUGUI medicineIndexTxt;
+
 
     private static UIManager instance;
     public static UIManager GetInstance() { return instance; }
@@ -31,40 +38,62 @@ public class UIManager : MonoBehaviour
         instance = this;
     }
 
-    void Update()
+    private void Start()
     {
         StartCoroutine(updateUI());
     }
 
+
     IEnumerator updateUI()
     {
-        yield return new WaitForEndOfFrame();
-        var dataInstance = Manager.GetInstance();
+        while (true)
+        {
+            yield return new WaitForEndOfFrame();
+            var dataInstance = Manager.GetInstance();
 
-        HealthTxt.text = "Health: " + dataInstance.userHealth.ToString();
-        CurrentMoneyTxt.text = "Budget: " + dataInstance.currentMoney.ToString();
-        DaysLeftTxt.text = "Days Left: " + dataInstance.daysLeft.ToString();
-        GasTxt.text = "Gas: " + dataInstance.gasNum.ToString();
+            if (DriverTxt == null) break;
+            DriverTxt.text = dataInstance.username;
+            CurrentMoneyTxt.text = dataInstance.currentMoney.ToString();
+            GasTxt.text = dataInstance.gasNum.ToString();
+
+            if (tiresIndexTxt == null) yield return null;
+            tiresIndexTxt.text = dataInstance.tiresNum.ToString() + "x";
+            foodIndexTxt.text = dataInstance.snacksNum.ToString() + "x";
+            fishbaitIndexTxt.text = dataInstance.fishbaitNum.ToString() + "x";
+            medicineIndexTxt.text = dataInstance.medicineNum.ToString() + "x";
+        }
+        yield return null;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="obj">The UI Game Object</param>
+    /// <param name="hide">True for Hide, False for Show</param>
+    public void ControlUI(GameObject obj, bool show)
+    {
+        if (obj != null) obj.SetActive(show);
+        else Debug.Log("Panel is not set. Ignored.");
     }
 
     public void HideUI()
     {
         if (DialogueManager.GetInstance().dialogueIsPlaying)
         {
-            GameUI.SetActive(false);
-            ShopUI.SetActive(false);
+            ControlUI(ShopUI, false);
+            ControlUI(GameUI, false);
         } else
         {
-            GameUI.SetActive(false);
-            DialoguePanel.SetActive(false);
+            ControlUI(GameUI, false);
+            ControlUI(DialoguePanel, false);
         }
     }
 
     public void RestoreUI()
     {
-        GameUI.SetActive(true);
+        ControlUI(GameUI, true);
     }
 
-    public void OpenShopUI() { ShopUI.SetActive(true); HideUI(); }
-    public void CloseShopUI() { ShopUI.SetActive(false); RestoreUI(); }
+    public void OpenShopUI() { ControlUI(ShopUI, true); HideUI(); }
+    public void CloseShopUI() { ControlUI(ShopUI, false); RestoreUI(); }
 }
