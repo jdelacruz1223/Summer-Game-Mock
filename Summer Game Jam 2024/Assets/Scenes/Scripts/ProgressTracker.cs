@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Assets.Scripts;
+using System.Linq;
 
 public class ProgressTracker : MonoBehaviour
 {
@@ -17,16 +18,24 @@ public class ProgressTracker : MonoBehaviour
     public List<SceneReference> scenesToLoad = new List<SceneReference>();
 
     private HashSet<int> progressCheckpoints = new HashSet<int>();  // To track progress checkpoints
+    private Dictionary<int, bool> sceneLoadedFlags = new Dictionary<int, bool>();  // Track if scenes are loaded
 
     void Start()
     {
         // Validate and sort scenesToLoad based on their progress percentage
         scenesToLoad.Sort((a, b) => a.progressPercentage.CompareTo(b.progressPercentage));
 
-        // Store progress points in a hash set for quick lookup
+        // Store progress points in a hash set for quick lookup and initialize flags
         foreach (var sceneRef in scenesToLoad)
         {
             progressCheckpoints.Add(sceneRef.progressPercentage);
+            sceneLoadedFlags[sceneRef.progressPercentage] = false;
+        }
+
+        // Load current progress and visited checkpoints from the data manager if it exists
+        if (ProgressDataManager.Instance != null)
+        {
+            currentProgress = ProgressDataManager.Instance.CurrentProgress;
         }
     }
 
@@ -40,12 +49,27 @@ public class ProgressTracker : MonoBehaviour
             // Check for progress checkpoints
             foreach (var checkpoint in progressCheckpoints)
             {
-                if (currentProgress >= GetProgressForPercentage(checkpoint))
+                if (currentProgress >= GetProgressForPercentage(checkpoint) && !sceneLoadedFlags[checkpoint])
                 {
+                    // Skip loading the scene if it has already been visited
+                    if (ProgressDataManager.Instance != null && ProgressDataManager.Instance.VisitedCheckpoints.Contains(checkpoint))
+                    {
+                        continue;
+                    }
+
+                    // Save current progress and mark the scene as visited
+                    if (ProgressDataManager.Instance != null)
+                    {
+                        ProgressDataManager.Instance.CurrentProgress = currentProgress;
+                        ProgressDataManager.Instance.LastSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                        ProgressDataManager.Instance.VisitedCheckpoints.Add(checkpoint);
+                    }
+
                     // Load corresponding scene
                     int sceneIndex = GetSceneIndexForProgress(checkpoint);
                     if (sceneIndex != -1)
                     {
+                        sceneLoadedFlags[checkpoint] = true;  // Mark the scene as loaded
                         SceneManager.LoadScene(sceneIndex);
                     }
                 }
@@ -96,6 +120,15 @@ public class ProgressTracker : MonoBehaviour
             }
         }
         return -1;  // Scene not found
+    }
+
+    // Optional: Method to reset scene load flags if needed
+    public void ResetSceneLoadFlags()
+    {
+        foreach (var key in sceneLoadedFlags.Keys.ToList())
+        {
+            sceneLoadedFlags[key] = false;
+        }
     }
 }
 
