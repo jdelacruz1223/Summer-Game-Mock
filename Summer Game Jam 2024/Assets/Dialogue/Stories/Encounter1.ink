@@ -14,11 +14,12 @@ You encountered a lone man slowly walking on the side of the road. He asks if yo
 
 == FirstChoice ==
 #reward money
+#harm 10
 You arrive at a gas station. As the man exits your car, he gives you a wad of cash as thanks!
 -> DONE
 
 == SecondChoice ==
-#harm
+#harm 10
 At 60+ MPH, you attempt to grab his wallet from your car window, injuring yourself and realizing this wasn't the best idea.
 -> DONE
 

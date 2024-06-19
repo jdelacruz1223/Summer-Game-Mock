@@ -28,11 +28,12 @@ public class PartyManager : MonoBehaviour
         int index = 0;
         foreach (var player in partyList)
         {
-            Debug.Log(player.Name);
-
             var partyIndex = partyPlayers[index];
             var nameTxt = partyIndex.GetComponentInChildren<TextMeshProUGUI>();
             var hpBar = partyIndex.GetComponentInChildren<Slider>();
+            var images = partyIndex.GetComponentsInChildren<Image>();
+
+            images[1].sprite = Manager.GetInstance().partySprites[index];
 
             nameTxt.text = player.Name;
             hpBar.value = player.Health / 100;
@@ -42,12 +43,6 @@ public class PartyManager : MonoBehaviour
             index++;
         }
     }
-
-    void Update()
-    {
-
-    }
-
 
     IEnumerator DepleteHP()
     {

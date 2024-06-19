@@ -17,7 +17,13 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI CurrentMoneyTxt;
     public TextMeshProUGUI DaysLeftTxt;
     public TextMeshProUGUI GasTxt;
-    public TextMeshProUGUI DistanceTxt;
+
+    [Header("Supplies Index UI")]
+    public TextMeshProUGUI tiresIndexTxt;
+    public TextMeshProUGUI foodIndexTxt;
+    public TextMeshProUGUI fishbaitIndexTxt;
+    public TextMeshProUGUI medicineIndexTxt;
+
 
     private static UIManager instance;
     public static UIManager GetInstance() { return instance; }
@@ -43,11 +49,13 @@ public class UIManager : MonoBehaviour
         var dataInstance = Manager.GetInstance();
 
         DriverTxt.text = dataInstance.username;
-        //HealthTxt.text = dataInstance.userHealth.ToString();
         CurrentMoneyTxt.text = dataInstance.currentMoney.ToString();
-        DaysLeftTxt.text = dataInstance.daysLeft.ToString();
         GasTxt.text = dataInstance.gasNum.ToString();
-        //DistanceTxt.text = dataInstance.currentProgress.ToString() + "%";
+
+        tiresIndexTxt.text = dataInstance.tiresNum.ToString();
+        foodIndexTxt.text = dataInstance.snacksNum.ToString();
+        fishbaitIndexTxt.text = dataInstance.fishbaitNum.ToString();
+        medicineIndexTxt.text = dataInstance.medicineNum.ToString();
     }
 
     /// <summary>

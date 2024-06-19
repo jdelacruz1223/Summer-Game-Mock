@@ -15,10 +15,12 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
+        Debug.Log(Manager.GetInstance().playerSprite.sprite);
         sr.sprite = Manager.GetInstance().playerSprite.sprite;
-        animator = Manager.GetInstance().playerSprite.animator;
+        Manager.GetInstance().playerSprite.animator = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        animator.runtimeAnimatorController = Manager.GetInstance().playerSprite.animator;
     }
 
     void Update()

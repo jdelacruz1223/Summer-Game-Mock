@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,8 +13,8 @@ public class CharacterSetupManager : MonoBehaviour
     [SerializeField] private GameObject partyListPanel;
     public List<GameObject> playersInGame;
 
-    public List<GameObject> playerSprites;
-    public List<GameObject> animationForPlayerSprites;
+    public List<Sprite> playerSprites;
+    public List<AnimatorOverrideController> animationForPlayerSprites;
     public string username { get; private set; }
     public string partyName { get; private set; }
     public int totalMembers { get; private set; }
@@ -37,24 +38,25 @@ public class CharacterSetupManager : MonoBehaviour
         }
 
         int index = Random.Range(0, playerSprites.Count);
-        var spriteRenderer = playerSprites[index].GetComponent<SpriteRenderer>();
+        var sprite = playerSprites[index];
 
         if (Manager.GetInstance().playerSprite.sprite == null)
         {
             Debug.Log("Setting sprite for player");
+            Debug.Log(sprite);
             Manager.GetInstance().setPlayerSprite(new Assets.Model.SpriteModel
             {
-                sprite = spriteRenderer.sprite,
-                animator = animationForPlayerSprites[index].GetComponent<Animator>()
-            });
+                sprite = sprite,
+                animator = animationForPlayerSprites[index]
+            }) ;
 
-            playersInGame[0].GetComponentInChildren<SpriteRenderer>().sprite = spriteRenderer.sprite;
+            playersInGame[0].GetComponentInChildren<SpriteRenderer>().sprite = sprite;
         }
         else
         {
             Debug.Log("Adding new sprite");
 
-            Manager.GetInstance().addPartySprite(spriteRenderer);
+            Manager.GetInstance().addPartySprite(sprite);
 
             var player = playersInGame[0];
             Debug.Log("Setting sprite for player " + player.gameObject.name);
@@ -64,7 +66,7 @@ public class CharacterSetupManager : MonoBehaviour
                 Debug.Log("Setting sprite for party member");
                 player.SetActive(true);
                 var spriteRender = player.GetComponentInChildren<SpriteRenderer>();
-                spriteRender.sprite = spriteRenderer.sprite;
+                spriteRender.sprite = sprite;
             }
         }
 

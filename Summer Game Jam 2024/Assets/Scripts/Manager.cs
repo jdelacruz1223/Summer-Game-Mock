@@ -15,7 +15,7 @@ public class Manager : MonoBehaviour
     public int budget { get; private set; }
     [SerializeField] public int currentMoney { get; private set; }
     public SpriteModel playerSprite { get; set; }
-    public List<SpriteRenderer> partySprites { get; private set; }
+    public List<Sprite> partySprites { get; private set; }
 
     /// <summary>
     /// All In Game Item Variables
@@ -24,13 +24,14 @@ public class Manager : MonoBehaviour
     [SerializeField] public int tiresNum { get; private set; }
     [SerializeField] public int snacksNum { get; private set; }
     [SerializeField] public int fishbaitNum { get; private set; }
+    [SerializeField] public int fishCaughtNum { get; private set; }
+    [SerializeField] public int encountersNum { get; private set; }
     [SerializeField] public int gameNum { get; private set; }
     [SerializeField] public int medicineNum { get; private set; }
 
     /// <summary>
     /// Gameplay Variables
     /// </summary>
-    public int daysLeft { get; private set; }
     [SerializeField] public float gasNum { get; private set; }
     [SerializeField] public float userHealth { get; private set; }
     public float currentProgress { get; private set; }
@@ -39,11 +40,6 @@ public class Manager : MonoBehaviour
     /// End Game Scene Variables
     /// </summary>
     public float totalTime { get; private set; }
-    public float homeToSolvangTime { get; private set; }
-    public float solvangToPismoTime { get; private set; }
-    public float pismoToMontereyTime { get; private set; }
-    public float montereyToSFTime { get; private set; }
-    public int relicsNum { get; private set; }
 
     // Settings
     public float audioVolume { get; private set; }
@@ -60,6 +56,10 @@ public class Manager : MonoBehaviour
     public static Manager GetInstance() { return me; }
 
     public static Manager me;
+
+    private float startTime;
+    private bool isRunning;
+
     void Awake()
     {
         if (me != null) 
@@ -86,7 +86,7 @@ public class Manager : MonoBehaviour
         party = new List<PartyModel>();
 
         playerSprite = new SpriteModel();
-        partySprites = new List<SpriteRenderer>();
+        partySprites = new List<Sprite>();
 
 
         currentMoney = 500;
@@ -97,19 +97,15 @@ public class Manager : MonoBehaviour
         gameNum = 0;
         medicineNum = 0;
 
+        fishCaughtNum = 0;
+        encountersNum = 0;
+
         currentDestination = townLocations.Solvang;
 
-        daysLeft = 5;
         gasNum = 100;
         userHealth = 100;
 
         totalTime = 0;
-        homeToSolvangTime = 0;
-        solvangToPismoTime = 0;
-        pismoToMontereyTime = 0;
-        montereyToSFTime = 0;
-
-        relicsNum = 0;
 
         // Settings
         audioVolume = 0.5f;
@@ -171,7 +167,7 @@ public class Manager : MonoBehaviour
         playerSprite.sprite = sprite.sprite;
         playerSprite.animator = sprite.animator;
     }
-    public void addPartySprite(SpriteRenderer spriteRenderer) => partySprites.Add(spriteRenderer);
+    public void addPartySprite(Sprite sprite) => partySprites.Add(sprite);
 
     public void setBudget(int value) => budget = value;
     public void increaseMoneyCount(int value) { currentMoney += value; }
@@ -209,8 +205,6 @@ public class Manager : MonoBehaviour
     #endregion
 
     #region GAMEPLAY
-    public void decreaseDaysLeftCount() => daysLeft -= 1;
-
     public void setGasCount(float value) => gasNum = value;
     public void increaseGasCount(float value) => gasNum += value;
     public void decreaseGasCount(float value)
