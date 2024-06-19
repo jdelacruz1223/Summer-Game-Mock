@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+
+        sr.sprite = Manager.GetInstance().playerSprite.sprite;
+        animator = Manager.GetInstance().playerSprite.animator;
     }
 
     void Update()
