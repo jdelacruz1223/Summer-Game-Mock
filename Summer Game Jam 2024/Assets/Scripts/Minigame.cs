@@ -100,6 +100,8 @@ public class MiniGame : MonoBehaviour
     IEnumerator WaitForConfirmation()
     {
         // Display congratulatory message with fish size
+        Manager.GetInstance().increaseFishCaught();
+
         congratulationText.gameObject.SetActive(true);
         int fishSize = Random.Range(10, 50); // Random size between 10 and 49 centimeters
         congratulationText.text = "Congratulations, you caught a fish!\nSize: " + fishSize + " cm\nPress F to continue.";

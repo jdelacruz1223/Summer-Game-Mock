@@ -33,6 +33,8 @@ namespace Assets.Scripts.Dialogue
             Debug.Log("Parsing Tags");
             tags = story.currentTags;
 
+            var instance = Manager.GetInstance();
+
             foreach (string t in tags)
             {
                 string prefix = t.Split(' ')[0];
@@ -42,17 +44,53 @@ namespace Assets.Scripts.Dialogue
                 {
                     // #reward sword | sword is the param, so basically give the player a sword if "reward" is called.
                     case "reward":
-                        // give player medkit
                         switch (param.ToLower())
                         {
                             case "money":
-                                Manager.GetInstance().increaseMoneyCount(Random.Range(0, 100));
+                               instance.increaseMoneyCount(Random.Range(0, 100));
                                 break;
+                            case "medicine":
+                                instance.increaseMedicineCount(1);
+                                break;
+                            case "food":
+                                instance.increaseSnackCount(1);
+                                break;
+
                         }
                         break;
                     case "harm":
-                        Manager.GetInstance().decreaseUserHealth(int.Parse(param));
+                        instance.decreaseUserHealth(int.Parse(param));
                         break;
+
+                    case "tires":
+                        Debug.Log("DEBUG: " + param);
+                        if (param.Contains("-"))
+                            instance.decreaseTireCount(int.Parse(param));
+                        else
+                            instance.increaseTireCount(int.Parse(param));
+                        break;
+
+                    case "food":
+                        if (param.Contains("-"))
+                            instance.decreaseSnackCount(int.Parse(param));
+                        else
+                            instance.increaseSnackCount(int.Parse(param));
+                        break;
+
+                    case "harmparty":
+                        instance.changeHealthToParty(-int.Parse(param));
+                        break;
+
+                    case "happyparty":
+                        instance.changeHealthToParty(int.Parse(param));
+                        break;
+                    case "medicine":
+                        if (param.Contains("-"))
+                            instance.decreaseMedicineCount(int.Parse(param));
+                        else
+                            instance.increaseMedicineCount(int.Parse(param));
+                        break;
+
                     case "open":
                         switch(param.ToLower())
                         {

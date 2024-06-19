@@ -105,7 +105,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterEncounterDialogueMode(TextAsset inkJSON)
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
         UIManager.GetInstance().HideUI();
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;

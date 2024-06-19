@@ -9,6 +9,4 @@ public class SpriteRendererShadows : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
     }
-
-  
 }
