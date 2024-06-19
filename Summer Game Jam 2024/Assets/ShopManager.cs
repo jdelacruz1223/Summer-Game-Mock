@@ -80,7 +80,7 @@ public class ShopManager : MonoBehaviour
         MedicineIndex.text = $"{medicineIndex}x";
 
         var manager = Manager.GetInstance();
-        manager.setBudget(currentBudget);
+        manager.setMoneyCount(currentBudget);
         manager.setTireCount(tireIndex);
         manager.setSnackCount(foodIndex);
         manager.setFishbaitCount(fishbaitIndex);
