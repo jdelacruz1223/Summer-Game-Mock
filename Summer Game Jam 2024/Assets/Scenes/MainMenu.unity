@@ -1426,11 +1426,51 @@ PrefabInstance:
     - target: {fileID: 6917257718171423319, guid: edeb14e9ebe7e0a46b3c015c9a92d46e,
         type: 3}
       propertyPath: MusicClips.Array.size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6917257718171423319, guid: edeb14e9ebe7e0a46b3c015c9a92d46e,
         type: 3}
+      propertyPath: MusicClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 52f25d616a175aa4d97b9302ac4bf1d2, type: 3}
+    - target: {fileID: 6917257718171423319, guid: edeb14e9ebe7e0a46b3c015c9a92d46e,
+        type: 3}
+      propertyPath: MusicClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 52f25d616a175aa4d97b9302ac4bf1d2, type: 3}
+    - target: {fileID: 6917257718171423319, guid: edeb14e9ebe7e0a46b3c015c9a92d46e,
+        type: 3}
       propertyPath: MusicClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: e14cd02a2c1b06e4cb5f625ea75d7929, type: 3}
+    - target: {fileID: 6917257718171423319, guid: edeb14e9ebe7e0a46b3c015c9a92d46e,
+        type: 3}
+      propertyPath: MusicClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a41bbacd93d9e84088ae87978d030db, type: 3}
+    - target: {fileID: 6917257718171423319, guid: edeb14e9ebe7e0a46b3c015c9a92d46e,
+        type: 3}
+      propertyPath: MusicClips.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 83db924a72d12d44399183376c4beddc, type: 3}
+    - target: {fileID: 6917257718171423319, guid: edeb14e9ebe7e0a46b3c015c9a92d46e,
+        type: 3}
+      propertyPath: MusicClips.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e8bfebd77c0bc24bbc65299b30eb16c, type: 3}
+    - target: {fileID: 6917257718171423319, guid: edeb14e9ebe7e0a46b3c015c9a92d46e,
+        type: 3}
+      propertyPath: MusicClips.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 032c683b4c85b184bbea782b4dbe44b3, type: 3}
+    - target: {fileID: 6917257718171423319, guid: edeb14e9ebe7e0a46b3c015c9a92d46e,
+        type: 3}
+      propertyPath: MusicClips.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: 404838129577ceb4993e51906f2d2641, type: 3}
+    - target: {fileID: 6917257718171423319, guid: edeb14e9ebe7e0a46b3c015c9a92d46e,
+        type: 3}
+      propertyPath: MusicClips.Array.data[10]
       value: 
       objectReference: {fileID: 8300000, guid: e14cd02a2c1b06e4cb5f625ea75d7929, type: 3}
     m_RemovedComponents: []
