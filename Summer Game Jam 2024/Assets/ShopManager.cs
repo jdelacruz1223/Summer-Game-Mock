@@ -64,6 +64,7 @@ public class ShopManager : MonoBehaviour
         if (final_value == 0) return true;
         if (final_value > 0) return true;
         return false;
+
     }
 
     int PriceOfItem(string item) {
@@ -77,6 +78,13 @@ public class ShopManager : MonoBehaviour
         FoodIndex.text = $"{foodIndex}x";
         FishBaitIndex.text = $"{fishbaitIndex}x";
         MedicineIndex.text = $"{medicineIndex}x";
+
+        var manager = Manager.GetInstance();
+        manager.setBudget(currentBudget);
+        manager.setTireCount(tireIndex);
+        manager.setSnackCount(foodIndex);
+        manager.setFishbaitCount(fishbaitIndex);
+        manager.setMedicineCount(medicineIndex);
     }
 
     public void AddToCart(int item)
@@ -90,24 +98,32 @@ public class ShopManager : MonoBehaviour
         switch (selectedItem)
         {
             case Items.Tires:
+                if (tireIndex == 10) return;
                 if (tireIndex < 10)
                     tireIndex++;
                     totalSpent += priceOfItem;
                     currentBudget -= priceOfItem;
                 break;
             case Items.Food:
+                if (foodIndex == 10) return;
+
                 if (foodIndex < 10)
                     foodIndex++;
+                    print(foodIndex);
                     totalSpent += priceOfItem;
                     currentBudget -= priceOfItem;
                 break;
             case Items.Fish_Bait:
+                if (fishbaitIndex == 10) return;
+
                 if (fishbaitIndex < 10)
                     fishbaitIndex++;
                     totalSpent += priceOfItem;
                     currentBudget -= priceOfItem;
                 break;
             case Items.Medicine:
+                if (medicineIndex == 10) return;
+
                 if (medicineIndex < 10)
                     medicineIndex++;
                     totalSpent += priceOfItem;
