@@ -1,24 +1,40 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MiniGame : MonoBehaviour
 {
     // Reference to the UI canvas for the prompt
     public GameObject promptCanvas;
 
+    // Reference to the UI Slider for progress indication
+    public Slider progressSlider;
+
+    // Reference to the congratulatory message text
+    public Text congratulationText;
+
+    // Reference to the UI Image for displaying the fish image
+    public Image fishImage;
+
     // RNG settings for spacebar presses
     public int minPresses = 10;
     public int maxPresses = 20;
 
-    // Reference to the congratulatory message text
-    public Text congratulationText;
+    // List of fish textures to display
+    public List<Sprite> fishSprites;
 
     // Internal variables
     private int requiredPresses;
     private int currentPresses = 0;
     private bool isMiniGameActive = false;
     private bool isWaitingForConfirmation = false;
+
+    void Start()
+    {
+        // Ensure promptCanvas starts inactive
+        promptCanvas.SetActive(false);
+    }
 
     // Start the mini-game
     public void StartMiniGame()
@@ -32,6 +48,9 @@ public class MiniGame : MonoBehaviour
             // Show prompt UI above player's head
             promptCanvas.SetActive(true);
 
+            // Reset progress slider
+            progressSlider.value = 0;
+
             isMiniGameActive = true;
         }
     }
@@ -43,6 +62,10 @@ public class MiniGame : MonoBehaviour
         {
             currentPresses++;
             Debug.Log("Spacebar pressed. Current presses: " + currentPresses);
+
+            // Update progress slider value
+            float progress = (float)currentPresses / requiredPresses;
+            progressSlider.value = progress;
 
             // Example: Update UI to show currentPresses / requiredPresses
 
@@ -58,9 +81,15 @@ public class MiniGame : MonoBehaviour
     // Coroutine to wait for player confirmation
     IEnumerator WaitForConfirmation()
     {
-        // Display congratulatory message
+        // Display congratulatory message with fish size
         congratulationText.gameObject.SetActive(true);
-        congratulationText.text = "Congratulations, you win!\nPress F to continue.";
+        int fishSize = Random.Range(10, 50); // Random size between 10 and 49 centimeters
+        congratulationText.text = "Congratulations, you caught a fish!\nSize: " + fishSize + " cm\nPress F to continue.";
+
+        // Display random fish image
+        fishImage.gameObject.SetActive(true);
+        int randomFishIndex = Random.Range(0, fishSprites.Count);
+        fishImage.sprite = fishSprites[randomFishIndex];
 
         // Wait for player confirmation
         while (true)
@@ -72,19 +101,21 @@ public class MiniGame : MonoBehaviour
             yield return null;
         }
 
-        // Deactivate congratulatory message after confirmation
+        // Deactivate congratulatory message and fish image after confirmation
         congratulationText.gameObject.SetActive(false);
+        fishImage.gameObject.SetActive(false);
 
         // Reset mini-game variables and UI elements for next playthrough
         ResetMiniGame();
     }
 
-    // Function to end the mini-game
+    // Function to reset mini-game variables and UI elements
     void ResetMiniGame()
     {
         promptCanvas.SetActive(false);
         isMiniGameActive = false;
         isWaitingForConfirmation = false;
         currentPresses = 0;
+        progressSlider.value = 0;
     }
 }
