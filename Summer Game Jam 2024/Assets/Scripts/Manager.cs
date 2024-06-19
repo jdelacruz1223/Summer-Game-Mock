@@ -76,10 +76,7 @@ public class Manager : MonoBehaviour
     {
         InitializeGame();
     }
-
-    private void Update()
-    {
-    }
+   
 
     void InitializeGame()
     {
@@ -88,6 +85,8 @@ public class Manager : MonoBehaviour
         playerSprite = new SpriteModel();
         partySprites = new List<Sprite>();
 
+        startTime = Time.time;
+        isRunning = true;
 
         currentMoney = 500;
 
@@ -112,6 +111,27 @@ public class Manager : MonoBehaviour
     }
 
     int lessCheck(int initial, int new_value) { int val = initial - new_value; if (val >= 0) return val; else return 0; }
+    
+    #region Time Functions
+    public float GetTotalTimeElapsed()
+    {
+        return Time.time - startTime;
+    }
+
+    public void StopTimer()
+    {
+        isRunning = false;
+    }
+
+    public void StartTimer()
+    {
+        if (!isRunning)
+        {
+            startTime = Time.time - GetTotalTimeElapsed();
+            isRunning = true;
+        }
+    }
+    #endregion
 
     #region PARTY FUNCTIONS
     public void AddMember(PartyModel newMember)
@@ -153,6 +173,16 @@ public class Manager : MonoBehaviour
         else
         {
             Console.WriteLine("Member not found.");
+        }
+    }
+
+    public void changeHealthToParty(float healthToAdd)
+    {
+        foreach (var member in party)
+        {
+            if ((member.Health + healthToAdd) >= 100) return;
+
+            member.Health += healthToAdd;
         }
     }
     #endregion
@@ -222,6 +252,9 @@ public class Manager : MonoBehaviour
     }
 
     public void setCurrentProgress(float value) => currentProgress = value;
+
+    public void increaseRandomEncounter() => encountersNum++;
+    public void increaseFishCaught() => encountersNum++;
     #endregion
 
     #region Settings

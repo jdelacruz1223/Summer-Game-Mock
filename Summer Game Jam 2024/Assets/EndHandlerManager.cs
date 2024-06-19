@@ -13,8 +13,19 @@ public class EndHandlerManager : MonoBehaviour
     void Start()
     {
         var instance = Manager.GetInstance();
-        totalTimeTxt.text = "";
-        moneySavedTxt.text = instance.currentMoney.ToString();
+
+        float currentTime = instance.GetTotalTimeElapsed();
+        float finalTime = 0f;
+
+        if (currentTime >= 60)
+        {
+            finalTime = currentTime / 60;
+            finalTime = Mathf.Round(finalTime);
+        }
+        totalTimeTxt.text = finalTime.ToString();
+        if (currentTime > 60) totalTimeTxt.text += " minutes";
+
+        moneySavedTxt.text = "$" + instance.currentMoney.ToString();
         fishCaughtTxt.text = instance.fishCaughtNum.ToString();
         encountersTxt.text = instance.encountersNum.ToString();
     }

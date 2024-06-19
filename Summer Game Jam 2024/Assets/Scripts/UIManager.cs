@@ -38,24 +38,31 @@ public class UIManager : MonoBehaviour
         instance = this;
     }
 
-    void Update()
+    private void Start()
     {
         StartCoroutine(updateUI());
     }
 
+
     IEnumerator updateUI()
     {
-        yield return new WaitForEndOfFrame();
-        var dataInstance = Manager.GetInstance();
+        while (true)
+        {
+            yield return new WaitForEndOfFrame();
+            var dataInstance = Manager.GetInstance();
 
-        DriverTxt.text = dataInstance.username;
-        CurrentMoneyTxt.text = dataInstance.currentMoney.ToString();
-        GasTxt.text = dataInstance.gasNum.ToString();
+            if (DriverTxt == null) break;
+            DriverTxt.text = dataInstance.username;
+            CurrentMoneyTxt.text = dataInstance.currentMoney.ToString();
+            GasTxt.text = dataInstance.gasNum.ToString();
 
-        tiresIndexTxt.text = dataInstance.tiresNum.ToString();
-        foodIndexTxt.text = dataInstance.snacksNum.ToString();
-        fishbaitIndexTxt.text = dataInstance.fishbaitNum.ToString();
-        medicineIndexTxt.text = dataInstance.medicineNum.ToString();
+            if (tiresIndexTxt == null) yield return null;
+            tiresIndexTxt.text = dataInstance.tiresNum.ToString() + "x";
+            foodIndexTxt.text = dataInstance.snacksNum.ToString() + "x";
+            fishbaitIndexTxt.text = dataInstance.fishbaitNum.ToString() + "x";
+            medicineIndexTxt.text = dataInstance.medicineNum.ToString() + "x";
+        }
+        yield return null;
     }
 
     /// <summary>

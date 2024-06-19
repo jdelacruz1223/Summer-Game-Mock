@@ -65,6 +65,8 @@ public class ProgressTracker : MonoBehaviour
                         ProgressDataManager.Instance.VisitedCheckpoints.Add(checkpoint);
                     }
 
+                    if (currentProgress == 100) Manager.GetInstance().StopTimer();
+
                     // Load corresponding scene
                     int sceneIndex = GetSceneIndexForProgress(checkpoint);
                     if (sceneIndex != -1)

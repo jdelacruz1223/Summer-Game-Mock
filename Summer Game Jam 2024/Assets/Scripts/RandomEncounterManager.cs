@@ -58,6 +58,7 @@ namespace Assets.Scripts
                         int index = Random.Range(0, Stories.Count);
                         TextAsset inkJson = Stories[index];
 
+                        Manager.GetInstance().increaseRandomEncounter();
                         DialogueManager.GetInstance().EnterEncounterDialogueMode(inkJson);
                     }
                 }

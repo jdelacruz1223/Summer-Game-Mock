@@ -21,6 +21,8 @@ public class SceneTransition : MonoBehaviour
         fader.localScale = Vector3.zero;
         LeanTween.scale(fader, Vector3.one * 2f, 0.5f).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() => {
             // Load the new scene after the transition completes
+            if (sceneIndex == 4) Manager.GetInstance().StartTimer();
+
             SceneManager.LoadScene(sceneIndex);
         });
     }
