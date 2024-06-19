@@ -10,6 +10,10 @@ public class CharacterSetupManager : MonoBehaviour
     [SerializeField] private TMP_InputField partyTxt;
     [SerializeField] private TextMeshProUGUI partyTextFormat;
     [SerializeField] private GameObject partyListPanel;
+    public List<GameObject> playersInGame;
+
+    public List<GameObject> playerSprites;
+    public List<GameObject> animationForPlayerSprites;
     public string username { get; private set; }
     public string partyName { get; private set; }
     public int totalMembers { get; private set; }
@@ -20,11 +24,57 @@ public class CharacterSetupManager : MonoBehaviour
     void Start()
     {
         partyNames = new List<string>();
+
+        RandomSprite();
+    }
+
+    void RandomSprite()
+    {
+        if (playerSprites.Count == 0)
+        {
+            Debug.LogError("No more sprites available.");
+            return;
+        }
+
+        int index = Random.Range(0, playerSprites.Count);
+        var spriteRenderer = playerSprites[index].GetComponent<SpriteRenderer>();
+
+        if (Manager.GetInstance().playerSprite.sprite == null)
+        {
+            Debug.Log("Setting sprite for player");
+            Manager.GetInstance().setPlayerSprite(new Assets.Model.SpriteModel
+            {
+                sprite = spriteRenderer.sprite,
+                animator = animationForPlayerSprites[index].GetComponent<Animator>()
+            });
+
+            playersInGame[0].GetComponentInChildren<SpriteRenderer>().sprite = spriteRenderer.sprite;
+        }
+        else
+        {
+            Debug.Log("Adding new sprite");
+
+            Manager.GetInstance().addPartySprite(spriteRenderer);
+
+            var player = playersInGame[0];
+            Debug.Log("Setting sprite for player " + player.gameObject.name);
+
+            if (player.gameObject.name != "Player")
+            {
+                Debug.Log("Setting sprite for party member");
+                player.SetActive(true);
+                var spriteRender = player.GetComponentInChildren<SpriteRenderer>();
+                spriteRender.sprite = spriteRenderer.sprite;
+            }
+        }
+
+        playersInGame.RemoveAt(0);
+        playerSprites.RemoveAt(index);
+        animationForPlayerSprites.RemoveAt(index);
     }
 
     IEnumerator RefreshPartyList()
     {
-
         float distBetweenText = 10f;
         int index = 0;
 
@@ -52,11 +102,15 @@ public class CharacterSetupManager : MonoBehaviour
     }
     public void AddToParty()
     {
+        if (partyNames.Count == 3) return;
         if (partyNames.Contains(partyName)) return;
         if (partyTxt.text.Length == 0) return;
 
         Manager.GetInstance().addToParty(partyName);
         partyNames.Add(partyName);
+
+        RandomSprite();
+        
         StartCoroutine(RefreshPartyList());
 
         partyTxt.text = "";

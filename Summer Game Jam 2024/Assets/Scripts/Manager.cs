@@ -14,6 +14,8 @@ public class Manager : MonoBehaviour
     [SerializeField] public List<PartyModel> party { get; private set; }
     public int budget { get; private set; }
     [SerializeField] public int currentMoney { get; private set; }
+    public SpriteModel playerSprite { get; set; }
+    public List<SpriteRenderer> partySprites { get; private set; }
 
     /// <summary>
     /// All In Game Item Variables
@@ -82,6 +84,10 @@ public class Manager : MonoBehaviour
     void InitializeGame()
     {
         party = new List<PartyModel>();
+
+        playerSprite = new SpriteModel();
+        partySprites = new List<SpriteRenderer>();
+
 
         currentMoney = 500;
 
@@ -159,6 +165,13 @@ public class Manager : MonoBehaviour
     public void setUsername(string name) => username = name;
     public void addToParty(string name) { AddMember(new PartyModel { Name = name, Health = 100 }); }
     public void removeToParty(string name) => RemoveMember(name);
+
+    public void setPlayerSprite(SpriteModel sprite)
+    {
+        playerSprite.sprite = sprite.sprite;
+        playerSprite.animator = sprite.animator;
+    }
+    public void addPartySprite(SpriteRenderer spriteRenderer) => partySprites.Add(spriteRenderer);
 
     public void setBudget(int value) => budget = value;
     public void increaseMoneyCount(int value) { currentMoney += value; }
