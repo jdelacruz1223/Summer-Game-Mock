@@ -21,9 +21,9 @@ public class Manager : MonoBehaviour
     [SerializeField] public townLocations currentDestination { get; private set; }
     [SerializeField] public int tiresNum { get; private set; }
     [SerializeField] public int snacksNum { get; private set; }
-    [SerializeField] public int booksNum { get; private set; }
+    [SerializeField] public int fishbaitNum { get; private set; }
     [SerializeField] public int gameNum { get; private set; }
-    [SerializeField] public int drugsNum { get; private set; }
+    [SerializeField] public int medicineNum { get; private set; }
 
     /// <summary>
     /// Gameplay Variables
@@ -84,9 +84,9 @@ public class Manager : MonoBehaviour
 
         tiresNum = 0;
         snacksNum = 0;
-        booksNum = 0;
+        fishbaitNum = 0;
         gameNum = 0;
-        drugsNum = 0;
+        medicineNum = 0;
 
         currentDestination = townLocations.Solvang;
 
@@ -171,18 +171,22 @@ public class Manager : MonoBehaviour
     /// <param name="value"></param>
     public void increaseTireCount(int value) => tiresNum += value;
     public void decreaseTireCount(int value) => tiresNum = lessCheck(tiresNum, value);
+    public void setTireCount(int value) => tiresNum = value;
 
     public void increaseSnackCount(int value) => snacksNum += value;
     public void decreaseSnackCount(int value) => snacksNum = lessCheck(snacksNum, value);
+    public void setSnackCount(int value) => snacksNum = value;
 
-    public void increaseBookCount(int value) => booksNum += value;
-    public void decreaseBookCount(int value) => booksNum = lessCheck(booksNum, value);
+    public void increaseFishbaitCount(int value) => fishbaitNum += value;
+    public void decreaseFishbaitCount(int value) => fishbaitNum = lessCheck(fishbaitNum, value);
+    public void setFishbaitCount(int value) => fishbaitNum = value;
+
+    public void increaseMedicineCount(int value) => medicineNum += value;
+    public void decreaseMedicineCount(int value) => medicineNum = lessCheck(medicineNum, value);
+    public void setMedicineCount(int value) => medicineNum = value;
 
     public void increaseGameCount(int value) => gameNum += value;
     public void decreaseGameCount(int value) => gameNum = lessCheck(gameNum, value);
-
-    public void increaseDrugsCount(int value) => drugsNum += value;
-    public void decreaseDrugsCount(int value) => drugsNum = lessCheck(drugsNum, value);
 
     public void setDestination(townLocations town) => currentDestination = town;
     #endregion
