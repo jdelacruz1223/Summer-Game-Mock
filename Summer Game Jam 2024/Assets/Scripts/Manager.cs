@@ -189,7 +189,11 @@ public class Manager : MonoBehaviour
     {
         foreach (var member in party)
         {
-            if ((member.Health + healthToAdd) >= 100) return;
+            if ((member.Health + healthToAdd) >= 100)
+            {
+                member.Health = 100;
+                continue;
+            }
 
             member.Health += healthToAdd;
         }

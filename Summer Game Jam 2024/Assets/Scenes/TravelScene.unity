@@ -8295,7 +8295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalDistance: 100
-  speed: 2
+  speed: 1
   progressText: {fileID: 1180678041}
   progressBar: {fileID: 1515114839}
   scenesToLoad:
@@ -8419,7 +8419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3141077075204835272
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8532,10 +8532,10 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 385af1307532ff842bb7f547e9fd44f6, type: 3}
   - {fileID: 4900000, guid: 3b48747ed36ad3540a2abc408d0df45b, type: 3}
   - {fileID: 4900000, guid: cd3963e04b667384fbbcb46cdda242c1, type: 3}
-  secondsPerEncounter: 5
+  secondsPerEncounter: 3
   encounterPercentage: 70
-  secondsPerFoodCheck: 5
-  foodCheckPercentage: 60
+  secondsPerFoodCheck: 8
+  foodCheckPercentage: 30
 --- !u!224 &3821551372227012021
 RectTransform:
   m_ObjectHideFlags: 0

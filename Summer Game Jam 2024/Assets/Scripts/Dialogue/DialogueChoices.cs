@@ -47,7 +47,7 @@ namespace Assets.Scripts.Dialogue
                         switch (param.ToLower())
                         {
                             case "money":
-                               instance.increaseMoneyCount(Random.Range(0, 100));
+                               instance.increaseMoneyCount(Random.Range(10, 100));
                                 break;
                             case "medicine":
                                 instance.increaseMedicineCount(1);
@@ -62,10 +62,8 @@ namespace Assets.Scripts.Dialogue
                         break;
 
                     case "tires":
-                        Debug.Log("Dialogue Choices: " + param);
                         if (param.Contains("-"))
                         {
-                            Debug.Log("result: " + param);
                             instance.decreaseTireCount(int.Parse(param.ToString().Replace("-", "")));
                         }
                         else

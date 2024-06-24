@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine.EventSystems;
 using Assets.Scripts.Dialogue;
 using Assets.Scripts;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Encounter UI")]
     [SerializeField] private GameObject[] encountersChoices;
+
     [SerializeField] private GameObject encountersPanel;
     [SerializeField] private TextMeshProUGUI encounterText;
     [SerializeField] private TextMeshProUGUI encounterTitleText;
@@ -49,12 +51,6 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         UIManager.GetInstance().ControlUI(dialoguePanel, false);
-
-        // Ensure the EventSystem is available and set up early
-        if (EventSystem.current != null)
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-        }
     }
 
     IEnumerator triggerCheck()
@@ -111,13 +107,24 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterEncounterDialogueMode(TextAsset inkJSON)
     {
-        //Cursor.visible = false;
-        UIManager.GetInstance().HideUI();
         currentStory = new Story(inkJSON.text);
+
+        if (Manager.GetInstance().party.Count == 0 && currentStory.globalTags[1].Split(" ")[1] != "false")
+        {
+            RandomEncounterManager.GetInstance().currentlyInEncounter = false;
+            return;
+        }
+
+        Cursor.visible = false;
+        UIManager.GetInstance().HideUI();
         dialogueIsPlaying = true;
         randomEncounterPlaying = true;
         encountersPanel.SetActive(true);
 
+        currentStory.BindExternalFunction("setItem", (string item) =>
+        {
+            CheckVariables(item);
+        });
 
         if (currentStory.canContinue)
         {
@@ -168,7 +175,7 @@ public class DialogueManager : MonoBehaviour
 
         Cursor.visible = true;
         UIManager.GetInstance().RestoreUI();
-        Debug.Log(currentStory.currentTags.ToString());
+        currentStory.UnbindExternalFunction("setItem");
         DialogueChoices.GetInstance().ParseTag(currentStory);
     }
 
@@ -186,7 +193,6 @@ public class DialogueManager : MonoBehaviour
                 encounterText.text = currentStory.Continue();
                 DisplayEncounterChoices();
             }
-
         }
         else
         {
@@ -233,7 +239,6 @@ public class DialogueManager : MonoBehaviour
         {
             encountersChoices[index].gameObject.SetActive(true);
             choicesText[index].text = choice.text;
-            Debug.Log(choice.text);
             index++;
         }
 
@@ -241,32 +246,82 @@ public class DialogueManager : MonoBehaviour
         {
             encountersChoices[i].gameObject.SetActive(false);
         }
-        StartCoroutine(SelectFirstChoice());
+        StartCoroutine(SelectEncounterChoice());
     }
 
     private IEnumerator SelectFirstChoice()
     {
-        yield return new WaitForSeconds(0.5f);
+        EventSystem.current.SetSelectedGameObject(null);
+        yield return new WaitForEndOfFrame();
 
-        if (EventSystem.current != null)
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-            yield return new WaitForEndOfFrame();
+      
+        var choiceButton = choices[0].gameObject;
+        EventSystem.current.SetSelectedGameObject(choiceButton);
+    }
 
-            var choiceButton = choices[0].gameObject;
-            if (randomEncounterPlaying)
-                choiceButton = encountersChoices[0].gameObject;
+    private IEnumerator SelectEncounterChoice()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        yield return new WaitForEndOfFrame();
 
-            EventSystem.current.SetSelectedGameObject(choiceButton);
-        }
-        else
-        {
-            Debug.LogWarning("EventSystem is not available.");
-        }
+
+        var choiceButton = encountersChoices[0].gameObject;
+        EventSystem.current.SetSelectedGameObject(choiceButton);
     }
 
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
+    }
+
+    private void CheckVariables(string item)
+    {
+        string prefix = item.Split(" ")[0];
+        string param = item.Split(" ")[1];
+        string text = "You do not have any snacks left! Dealt 20 DMG to you!";
+        if (Manager.GetInstance().party.Count > 0)
+        {
+            text += " and to your party!";
+            Manager.GetInstance().changeHealthToParty(-5);
+        }
+
+        switch (prefix)
+        {
+            case "tires":
+                if (param.Contains("-"))
+                {
+                    if (Manager.GetInstance().tiresNum + int.Parse(param) > 0) return;
+                    Manager.GetInstance().decreaseUserHealth(5);
+                } else
+                {
+                    if (Mathf.Abs(Manager.GetInstance().tiresNum - int.Parse(param)) > 0) return;
+                    Manager.GetInstance().decreaseUserHealth(5);
+                }
+                break;
+            case "food":
+                if (param.Contains("-"))
+                {
+                    if (Manager.GetInstance().snacksNum + int.Parse(param) > 0) return;
+                    Manager.GetInstance().decreaseUserHealth(5);
+                }
+                else
+                {
+                    if (Mathf.Abs(Manager.GetInstance().snacksNum - int.Parse(param)) > 0) return;
+                    Manager.GetInstance().decreaseUserHealth(5);
+                }
+                break;
+            case "medicine":
+                if (param.Contains("-"))
+                {
+                    if (Manager.GetInstance().medicineNum + int.Parse(param) > 0) return;
+                    Manager.GetInstance().decreaseUserHealth(5);
+                }
+                else
+                {
+                    if (Mathf.Abs(Manager.GetInstance().medicineNum - int.Parse(param)) > 0) return;
+                    Manager.GetInstance().decreaseUserHealth(5);
+                }
+                break;
+        }
     }
 }

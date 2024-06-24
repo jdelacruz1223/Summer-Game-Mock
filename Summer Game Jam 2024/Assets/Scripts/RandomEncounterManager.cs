@@ -10,6 +10,8 @@ namespace Assets.Scripts
     {
         [Header("Random Encounter")]
         [SerializeField] List<TextAsset> Stories;
+        //[SerializeField] List<TextAsset> storiesWithItems;
+
         public int secondsPerEncounter;
         public float encounterPercentage;
 

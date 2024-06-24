@@ -1,4 +1,5 @@
 # A Lone Drifter
+#Party false
 
 -> main
 

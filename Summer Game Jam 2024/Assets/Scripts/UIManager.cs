@@ -53,6 +53,7 @@ public class UIManager : MonoBehaviour
 
             if (DriverTxt == null) break;
             DriverTxt.text = dataInstance.username;
+            HealthTxt.text = dataInstance.userHealth.ToString();
             CurrentMoneyTxt.text = dataInstance.currentMoney.ToString();
             GasTxt.text = dataInstance.gasNum.ToString();
 

@@ -42,11 +42,11 @@ public class EndHandlerManager : MonoBehaviour
         {
             // Exit the game
             #if UNITY_EDITOR
-                        // If in the Unity editor, stop playing
-                        UnityEditor.EditorApplication.isPlaying = false;
+                // If in the Unity editor, stop playing
+                UnityEditor.EditorApplication.isPlaying = false;
             #else
-                        // If in a built application, quit
-                        Application.Quit();
+                // If in a built application, quit
+                Application.Quit();
             #endif
         }
     }
