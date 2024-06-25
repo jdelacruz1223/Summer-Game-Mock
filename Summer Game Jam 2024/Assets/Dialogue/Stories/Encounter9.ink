@@ -1,28 +1,29 @@
-#  Headache
+# Unexpected Talent
 #Party true
-
+EXTERNAL setItem(item)
 
  -> main
  
  === main ===
- One of your passengers has one.
-    + ["It's 'cause you always on that phone"]
+ One of your passengers suddenly starts beatboxing.
+    + [Join in with singing]
         -> FirstChoice
-    + [Offer Medicine]
+    + [Challenge them to a rap battle]
         -> SecondChoice
-    + [Offer Fish Bait]
+    + [Tell them to stop]
         -> ThirdChoice
         
 == FirstChoice ==
-#harmparty 10
-Your passenger groans in discomfort and tries to sleep off the headache, shuffling and shoving the others around carelessly. You'll never know if it was really motion sickness caused by being on that phone, but at least you think you're funny. (PARTY happiness -1)
--> DONE
-== SecondChoice ==
 #happyparty 10
-#medicine -1
-You give your passenger some Ibuprofen. Within a couple minutes, they let out a sigh of relief and continues to enjoy imagining a blue hedgehog running along the the hills and power poles (please tell me I'm not the only one). (PARTY happiness +1, medicine -1
+Your impromptu performance has everyone laughing and clapping along. You're a hit! (PARTY happiness +1)
 -> DONE
+
+== SecondChoice ==
+#happyparty 15
+The rap battle is fierce but friendly. It turns out you're all hidden talents. (PARTY happiness +1.5)
+-> DONE
+
 == ThirdChoice ==
-#harm 20
-..Why? (PARTY Happiness -2)
+#harmparty 5
+The beatboxing stops, but so does the fun. Way to kill the vibe. (PARTY happiness -0.5)
 -> DONE

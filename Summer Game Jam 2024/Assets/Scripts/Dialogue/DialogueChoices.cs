@@ -50,10 +50,10 @@ namespace Assets.Scripts.Dialogue
                                instance.increaseMoneyCount(Random.Range(10, 100));
                                 break;
                             case "medicine":
-                                instance.increaseMedicineCount(1);
+                                instance.increaseMedicineCount(Random.Range(1, 10));
                                 break;
                             case "food":
-                                instance.increaseSnackCount(1);
+                                instance.increaseSnackCount(Random.Range(1, 10));
                                 break;
                         }
                         break;
@@ -90,7 +90,9 @@ namespace Assets.Scripts.Dialogue
                         else
                             instance.increaseMedicineCount(int.Parse(param));
                         break;
-
+                    case "happyyou":
+                        instance.increaseUserHealth(int.Parse(param));
+                        break;
                     case "open":
                         switch(param.ToLower())
                         {

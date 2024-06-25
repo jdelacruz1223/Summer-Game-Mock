@@ -3298,7 +3298,7 @@ GameObject:
   - component: {fileID: 668868829}
   - component: {fileID: 668868828}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: PlayerImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3311,17 +3311,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668868826}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5657, y: 2.798689, z: 1.5657}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1684138823}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -50, y: 50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -64.3, y: 12.6}
+  m_SizeDelta: {x: 99.5603, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &668868828
 MonoBehaviour:
@@ -3343,7 +3343,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 754138742312153719, guid: 608f4868b3f2d9f47b5dd0d085d6d398, type: 3}
+  m_Sprite: {fileID: 9211217797635908184, guid: 76802fd2a275fad40834578461b43c54,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6724,7 +6725,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -240.9, y: 30.5}
+  m_AnchoredPosition: {x: -278, y: 30.5}
   m_SizeDelta: {x: 261.7264, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1648338488
@@ -9018,6 +9019,15 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 385af1307532ff842bb7f547e9fd44f6, type: 3}
   - {fileID: 4900000, guid: 3b48747ed36ad3540a2abc408d0df45b, type: 3}
   - {fileID: 4900000, guid: cd3963e04b667384fbbcb46cdda242c1, type: 3}
+  - {fileID: 4900000, guid: cd3963e04b667384fbbcb46cdda242c1, type: 3}
+  - {fileID: 4900000, guid: 6744eb53f24bfed4194f5403a2ab3170, type: 3}
+  - {fileID: 4900000, guid: e363e84f75ad7a646838e28fd5626d84, type: 3}
+  - {fileID: 4900000, guid: cc136d3b8e0a950489a3191157d0070c, type: 3}
+  - {fileID: 4900000, guid: f47ef440f909a1042bf83cae3b290ffd, type: 3}
+  - {fileID: 4900000, guid: 176c1ba5306bf86429978164480fd27e, type: 3}
+  - {fileID: 4900000, guid: 1b79ee16155df4546b0114ceba6bb956, type: 3}
+  - {fileID: 4900000, guid: 38c174921da330a4ea9072e3f217f6d9, type: 3}
+  - {fileID: 4900000, guid: beb2fbdff53f08b47ae330526adcf06a, type: 3}
   secondsPerEncounter: 3
   encounterPercentage: 70
   secondsPerFoodCheck: 8
@@ -9133,7 +9143,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 41.925938, z: -0.16870117, w: 41.58422}
+  m_margin: {x: 0, y: 68.67426, z: -0.16870117, w: 66.549255}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -9216,8 +9226,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15822019, y: 0.8333333}
   m_AnchorMax: {x: 0.94000006, y: 0.9244444}
-  m_AnchoredPosition: {x: 0.4000244, y: 0.7000122}
-  m_SizeDelta: {x: -0.40002, y: 0.69998}
+  m_AnchoredPosition: {x: -4.258, y: 26.557}
+  m_SizeDelta: {x: 8.516, y: 26.5567}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &5114739338863593174
 GameObject:
@@ -9933,6 +9943,7 @@ MonoBehaviour:
   foodIndexTxt: {fileID: 459867363}
   fishbaitIndexTxt: {fileID: 760973451}
   medicineIndexTxt: {fileID: 2080944038}
+  playerImg: {fileID: 668868828}
 --- !u!114 &8276315423692328361
 MonoBehaviour:
   m_ObjectHideFlags: 0

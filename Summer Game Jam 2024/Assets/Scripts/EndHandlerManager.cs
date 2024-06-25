@@ -27,12 +27,15 @@ public class EndHandlerManager : MonoBehaviour
 
     public void ReplayGame()
     {
+        ProgressDataManager.Instance.CurrentProgress = 0;
+        ProgressDataManager.Instance.LastSceneIndex = -1;
+
         Manager.GetInstance().ReplayGame();
     }
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        ReplayGame();
     }
 
     public void QuitGame()

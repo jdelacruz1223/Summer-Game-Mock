@@ -121,8 +121,8 @@ public class Manager : MonoBehaviour
 
     public void ReplayGame()
     {
-        Destroy(this);
-        SceneManager.LoadScene(1);
+        Destroy(this.gameObject);
+        SceneManager.LoadScene(0);
     }
 
     int lessCheck(int initial, int new_value) { int val = initial - new_value; if (val >= 0) return val; else return 0; }

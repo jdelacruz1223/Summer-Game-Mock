@@ -15,7 +15,7 @@ EXTERNAL setItem(item)
         -> ThirdChoice
         
 == FirstChoice ==
-#harmparty 20
+#harmparty 15
 They quickly open the window, letting their stomach loose into the wind. It's a gross thought to dwell on but at least none of it got into the car (the smell did though). (PARTY happiness -2)
 -> DONE
 == SecondChoice ==

@@ -54464,7 +54464,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 590733273}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -54473,12 +54473,12 @@ PrefabInstance:
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MainMenu
+      value: ReplayGame
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Play
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
@@ -54488,7 +54488,7 @@ PrefabInstance:
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.AudioSource, UnityEngine
+      value: EndHandlerManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6350056765885518202, guid: ecc52333d255b594f91403e18bf71c4d,
         type: 3}
