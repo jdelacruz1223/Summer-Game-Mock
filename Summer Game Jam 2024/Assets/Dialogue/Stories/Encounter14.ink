@@ -1,4 +1,4 @@
-# Sushi Pit Stop
+# Pit Stop
 #Party true
  -> main
  

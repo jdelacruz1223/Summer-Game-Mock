@@ -18,6 +18,7 @@ public class Manager : MonoBehaviour
     [SerializeField] public int currentMoney { get; private set; }
     public SpriteModel playerSprite { get; set; }
     public List<Sprite> partySprites { get; private set; }
+    public List<Sprite> photosTaken { get; set; }
 
     /// <summary>
     /// All In Game Item Variables
@@ -92,6 +93,7 @@ public class Manager : MonoBehaviour
 
         playerSprite = new SpriteModel();
         partySprites = new List<Sprite>();
+        photosTaken = new List<Sprite>();
 
         startTime = Time.time;
         isRunning = true;

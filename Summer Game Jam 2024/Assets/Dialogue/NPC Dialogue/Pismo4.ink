@@ -5,3 +5,5 @@ Several seagull attacks on the beach all year round, with a 75 year long power s
 Clam chowder!
 What more could you want from a place like this!?
 (seagull sounds)
+Do you want some stuff? Here ya go
+#open shop

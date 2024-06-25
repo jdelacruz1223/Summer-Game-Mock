@@ -4,7 +4,7 @@
 How's it going?
     + [Any good places besides the Aquarium?]
         -> FirstChoice
-    + [Any food spots to eat?]
+    + [Do you sell stuff?]
         -> SecondChoice
     + [Exit]
         -> Exit
@@ -18,7 +18,8 @@ Has anyone mentioned kayaking?
 -> END
 
 == SecondChoice ==
-There's an amazing crepe place there as well, one of my favorite dessert places to eat in while here in my opinion.
+#open shop
+Yup I do sell, by the way there's an amazing crepe place there as well, one of my favorite dessert places to eat in while here in my opinion.
 -> DONE
 
 == Exit ==

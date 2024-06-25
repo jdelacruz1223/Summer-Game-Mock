@@ -1,4 +1,4 @@
-# The Talking Tree
+# Talking Tree
 #Party false
 
  -> main
