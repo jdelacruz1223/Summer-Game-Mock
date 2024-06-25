@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         if (DialogueManager.GetInstance().dialogueIsPlaying)
         {
             rb.velocity = Vector3.zero;
+            animator.SetBool("isWalking", false);
             return;
         }
 

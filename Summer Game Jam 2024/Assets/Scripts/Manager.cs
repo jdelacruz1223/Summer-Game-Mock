@@ -89,6 +89,7 @@ public class Manager : MonoBehaviour
         startTime = Time.time;
         isRunning = true;
 
+        budget = 500;
         currentMoney = 500;
 
         tiresNum = 0;
@@ -113,9 +114,7 @@ public class Manager : MonoBehaviour
 
     public void ReplayGame()
     {
-        encountersNum = 0;
-        fishCaughtNum = 0;
-
+        Destroy(this);
         SceneManager.LoadScene(1);
     }
 

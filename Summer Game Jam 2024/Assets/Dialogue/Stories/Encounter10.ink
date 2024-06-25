@@ -4,7 +4,7 @@
  -> main
  
  === main ===
- One of your passengers has a headache.
+ One of your passengers has one.
     + ["It's 'cause you always on that phone"]
         -> FirstChoice
     + [Offer Medicine]
