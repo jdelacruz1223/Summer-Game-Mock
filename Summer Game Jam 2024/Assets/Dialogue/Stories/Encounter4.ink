@@ -24,9 +24,8 @@ You pull over to the side of the road, and not a second too soon as the next thi
 
 -> DONE
 == ThirdChoice ==
-#happyparty 20
-#medicine -1
 ~setItem("medicine -1")
+#happyparty 20
 The boogie bomb in their stomach worked a little quicker than the digestive system versus some Pepto in the time it took for you to pull over, but it did help the aftermath. (PARTY happiness +2, medicine -1)
 
 

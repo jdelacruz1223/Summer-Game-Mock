@@ -19,14 +19,12 @@ EXTERNAL setItem(item)
 Yeah, that's an ostrich on the road. (Nothing happens)
 -> DONE
 == SecondChoice ==
-#harmparty 10
-#tire -1
 ~setItem("tires -1")
+#harmparty 10
 The ostrich curiously approaches the vehicle and starts pecking at the tires. (-1 tires, PARTY happiness -1)
 -> DONE
 == ThirdChoice ==
-#happyparty 10
-#food -2
 ~setItem("food -2")
+#happyparty 10
 The party offers the animal some food. The ostrich gladly takes it out of your offering hands. (-2 food, PARTY happiness +1)
 -> DONE

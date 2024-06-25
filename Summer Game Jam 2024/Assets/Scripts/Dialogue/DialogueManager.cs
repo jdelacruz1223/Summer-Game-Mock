@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
-    public bool dialogueIsPlaying { get; private set; }
+    public bool dialogueIsPlaying { get; set; }
 
     [Header("Choices UI")]
     private TextMeshProUGUI[] choicesText;
@@ -55,6 +55,7 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         dialogueIsPlaying = false;
+        hasNoItem = false;
         UIManager.GetInstance().ControlUI(dialoguePanel, false);
     }
 
@@ -128,7 +129,6 @@ public class DialogueManager : MonoBehaviour
 
         currentStory.BindExternalFunction("setItem", (string item) =>
         {
-            hasNoItem = true;
             StartCoroutine(CheckVariables(item));
         });
 
@@ -175,8 +175,8 @@ public class DialogueManager : MonoBehaviour
                 DisplayEncounterChoices();
             }
 
-            currentStory.UnbindExternalFunction("setItem");
             randomEncounterPlaying = false;
+            currentStory.UnbindExternalFunction("setItem");
             RandomEncounterManager.GetInstance().currentlyInEncounter = false;
         }
 
@@ -196,8 +196,16 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
-                encounterText.text = currentStory.Continue();
-                DisplayEncounterChoices();
+                string nextLine = currentStory.Continue();
+
+                if (nextLine.Equals("") && !currentStory.canContinue)
+                {
+                    Invoke(nameof(ExitDialogueMode), 1 / 2);
+                } else
+                {
+                    encounterText.text = nextLine;
+                    DisplayEncounterChoices();
+                }
             }
         }
         else
@@ -282,85 +290,84 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator CheckVariables(string item)
     {
-        ExitDialogueMode();
-
         string prefix = item.Split(" ")[0];
         string param = item.Split(" ")[1];
         string text = $"You do not have any {prefix} left! Dealt DMG to you!";
-        
+
+        int val = 0;
 
         switch (prefix)
         {
             case "tires":
                 if (param.Contains("-"))
                 {
-                    if (Manager.GetInstance().tiresNum + int.Parse(param) > 0) yield return null;
-                    Manager.GetInstance().decreaseUserHealth(5);
-                } else
-                {
-                    if (Mathf.Abs(Manager.GetInstance().tiresNum - int.Parse(param)) > 0) yield return null;
-                    Manager.GetInstance().decreaseUserHealth(5);
-                }
+                    val = Manager.GetInstance().tiresNum + int.Parse(param);
+                    Debug.Log("VALUE: " + val);
 
-                if (Manager.GetInstance().party.Count > 0)
-                {
-                    text += " and to your party!";
-                    Manager.GetInstance().changeHealthToParty(-5);
-                }
+                    if (val >= 0)
+                    {
+                        Manager.GetInstance().decreaseTireCount(-int.Parse(param));
+                        yield break; // Exit coroutine
+                    }
 
-                noItemPanel.SetActive(true);
-                noItemDescriptionText.text = text;
-                RandomEncounterManager.GetInstance().currentlyInEncounter = true;
+                    HandleNoItemScenario(text);
+                }
                 break;
+
             case "food":
                 if (param.Contains("-"))
                 {
-                    if (Manager.GetInstance().snacksNum + int.Parse(param) > 0) yield return null;
-                    Manager.GetInstance().decreaseUserHealth(5);
-                }
-                else
-                {
-                    if (Mathf.Abs(Manager.GetInstance().snacksNum - int.Parse(param)) > 0) yield return null;
-                    Manager.GetInstance().decreaseUserHealth(5);
-                }
+                    val = Manager.GetInstance().snacksNum + int.Parse(param);
+                    Debug.Log("VALUE: " + val);
 
-                if (Manager.GetInstance().party.Count > 0)
-                {
-                    text += " and to your party!";
-                    Manager.GetInstance().changeHealthToParty(-5);
-                }
+                    if (val >= 0)
+                    {
+                        Manager.GetInstance().decreaseSnackCount(-int.Parse(param));
+                        yield break; // Exit coroutine
+                    }
 
-                noItemPanel.SetActive(true);
-                noItemDescriptionText.text = text;
-                RandomEncounterManager.GetInstance().currentlyInEncounter = true;
+                    HandleNoItemScenario(text);
+                }
                 break;
+
             case "medicine":
                 if (param.Contains("-"))
                 {
-                    if (Manager.GetInstance().medicineNum + int.Parse(param) > 0) yield return null;
-                    Manager.GetInstance().decreaseUserHealth(5);
-                }
-                else
-                {
-                    if (Mathf.Abs(Manager.GetInstance().medicineNum - int.Parse(param)) > 0) yield return null;
-                    Manager.GetInstance().decreaseUserHealth(5);
-                }
+                    val = Manager.GetInstance().medicineNum + int.Parse(param);
+                    Debug.Log("VALUE: " + val);
 
-                if (Manager.GetInstance().party.Count > 0)
-                {
-                    text += " and to your party!";
-                    Manager.GetInstance().changeHealthToParty(-5);
-                }
+                    if (val >= 0)
+                    {
+                        Manager.GetInstance().decreaseMedicineCount(-int.Parse(param));
+                        yield break; // Exit coroutine
+                    }
 
-                noItemPanel.SetActive(true);
-                noItemDescriptionText.text = text;
-                RandomEncounterManager.GetInstance().currentlyInEncounter = true;
+                    HandleNoItemScenario(text);
+                }
                 break;
         }
 
         yield return new WaitForSeconds(3);
+        hasNoItem = false;
         noItemPanel.SetActive(false);
         noItemDescriptionText.text = "";
         RandomEncounterManager.GetInstance().currentlyInEncounter = false;
+    }
+
+    private void HandleNoItemScenario(string text)
+    {
+        hasNoItem = true;
+        ExitDialogueMode();
+        RandomEncounterManager.GetInstance().currentlyInEncounter = true;
+        Manager.GetInstance().decreaseUserHealth(5);
+
+        if (Manager.GetInstance().party.Count > 0)
+        {
+            text += " and to your party!";
+            Manager.GetInstance().changeHealthToParty(-5);
+        }
+
+        noItemPanel.SetActive(true);
+        noItemDescriptionText.text = text;
     }
 }

@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    List<ItemModel> itemsInShop;
     public TextMeshProUGUI budgetTxt;
     public int totalSpent;
     public int currentBudget;
@@ -33,7 +32,7 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
-        itemsInShop = new List<ItemModel>
+        Manager.GetInstance().itemsInShop = new List<ItemModel>
         {
             new ItemModel { Name = "Tires", Price = 100 },
             new ItemModel { Name = "Food", Price = 15 },
@@ -59,20 +58,6 @@ public class ShopManager : MonoBehaviour
         UpdateUI();
     }
 
-    bool CanAfford(int value)
-    {
-        var final_value = currentBudget - value;
-        
-        if (final_value == 0) return true;
-        if (final_value > 0) return true;
-        return false;
-
-    }
-
-    int PriceOfItem(string item) {
-        return itemsInShop.FirstOrDefault(i => i.Name == item).Price;
-    }
-
     void UpdateUI()
     {
         budgetTxt.text = currentBudget.ToString();
@@ -92,8 +77,8 @@ public class ShopManager : MonoBehaviour
     public void AddToCart(int item)
     {
         Items selectedItem = (Items)item;
-        var priceOfItem = PriceOfItem(selectedItem.ToString());
-        if (!CanAfford(priceOfItem)) return;
+        var priceOfItem = Manager.GetInstance().PriceOfItem(selectedItem.ToString());
+        if (!Manager.GetInstance().CanAfford(priceOfItem)) return;
 
         switch (selectedItem)
         {
@@ -137,7 +122,7 @@ public class ShopManager : MonoBehaviour
     public void DecreaseCount(int item)
     {
         Items selectedItem = (Items)item;
-        var priceOfItem = PriceOfItem(selectedItem.ToString());
+        var priceOfItem = Manager.GetInstance().PriceOfItem(selectedItem.ToString());
 
         switch (selectedItem)
         {

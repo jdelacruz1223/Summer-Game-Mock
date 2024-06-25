@@ -95,8 +95,7 @@ namespace Assets.Scripts.Dialogue
                         switch(param.ToLower())
                         {
                             case "shop":
-                                Debug.Log("Opening Shop");
-                                UIManager.GetInstance().OpenShopUI();
+                                DialogueShopManager.GetInstance().OpenShop();
                                 break;
                         }
                         break;
