@@ -47,15 +47,14 @@ namespace Assets.Scripts.Dialogue
                         switch (param.ToLower())
                         {
                             case "money":
-                               instance.increaseMoneyCount(Random.Range(0, 100));
+                               instance.increaseMoneyCount(Random.Range(10, 100));
                                 break;
                             case "medicine":
-                                instance.increaseMedicineCount(1);
+                                instance.increaseMedicineCount(Random.Range(1, 10));
                                 break;
                             case "food":
-                                instance.increaseSnackCount(1);
+                                instance.increaseSnackCount(Random.Range(1, 10));
                                 break;
-
                         }
                         break;
                     case "harm":
@@ -63,16 +62,17 @@ namespace Assets.Scripts.Dialogue
                         break;
 
                     case "tires":
-                        Debug.Log("DEBUG: " + param);
                         if (param.Contains("-"))
-                            instance.decreaseTireCount(int.Parse(param));
+                        {
+                            instance.decreaseTireCount(int.Parse(param.ToString().Replace("-", "")));
+                        }
                         else
                             instance.increaseTireCount(int.Parse(param));
                         break;
 
                     case "food":
                         if (param.Contains("-"))
-                            instance.decreaseSnackCount(int.Parse(param));
+                            instance.decreaseSnackCount(int.Parse(param.ToString().Replace("-", "")));
                         else
                             instance.increaseSnackCount(int.Parse(param));
                         break;
@@ -86,17 +86,18 @@ namespace Assets.Scripts.Dialogue
                         break;
                     case "medicine":
                         if (param.Contains("-"))
-                            instance.decreaseMedicineCount(int.Parse(param));
+                            instance.decreaseMedicineCount(int.Parse(param.ToString().Replace("-", "")));
                         else
                             instance.increaseMedicineCount(int.Parse(param));
                         break;
-
+                    case "happyyou":
+                        instance.increaseUserHealth(int.Parse(param));
+                        break;
                     case "open":
                         switch(param.ToLower())
                         {
                             case "shop":
-                                Debug.Log("Opening Shop");
-                                UIManager.GetInstance().OpenShopUI();
+                                DialogueShopManager.GetInstance().OpenShop();
                                 break;
                         }
                         break;

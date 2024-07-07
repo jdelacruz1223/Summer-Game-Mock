@@ -1,8 +1,10 @@
+using Assets.Model;
 using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,6 +26,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI fishbaitIndexTxt;
     public TextMeshProUGUI medicineIndexTxt;
 
+    public Image playerImg;
+
 
     private static UIManager instance;
     public static UIManager GetInstance() { return instance; }
@@ -40,6 +44,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        playerImg.overrideSprite = Manager.GetInstance().playerSprite.sprite;
         StartCoroutine(updateUI());
     }
 
@@ -53,6 +58,7 @@ public class UIManager : MonoBehaviour
 
             if (DriverTxt == null) break;
             DriverTxt.text = dataInstance.username;
+            HealthTxt.text = dataInstance.userHealth.ToString();
             CurrentMoneyTxt.text = dataInstance.currentMoney.ToString();
             GasTxt.text = dataInstance.gasNum.ToString();
 

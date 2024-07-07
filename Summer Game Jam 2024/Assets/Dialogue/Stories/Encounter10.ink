@@ -1,26 +1,28 @@
-#  Headache
+# Weird Hitchhiker
+#Party true
 
  -> main
  
  === main ===
- One of your passengers has one.
-    + ["It's 'cause you always on that phone"]
+ You see a person dressed as a clown hitchhiking.
+    + [Pick them up]
         -> FirstChoice
-    + [Offer Medicine]
+    + [Drive past]
         -> SecondChoice
-    + [Offer Fish Bait]
+    + [Throw them a balloon]
         -> ThirdChoice
         
 == FirstChoice ==
-#harmparty 10
-Your passenger groans in discomfort and tries to sleep off the headache, shuffling and shoving the others around carelessly. You'll never know if it was really motion sickness caused by being on that phone, but at least you think you're funny. (PARTY happiness -1)
+#happyparty 15
+The clown tells jokes and makes balloon animals the whole ride. It's bizarre but fun. (PARTY happiness +1.5)
 -> DONE
+
 == SecondChoice ==
-#happyparty 10
-#medicine -1
-You give your passenger some Ibuprofen. Within a couple minutes, they let out a sigh of relief and continues to enjoy imagining a blue hedgehog running along the the hills and power poles (please tell me I'm not the only one). (PARTY happiness +1, medicine -1
+#harmparty 5
+The group is slightly disappointed. "Imagine the stories we could have had," someone mutters. (PARTY happiness -0.5)
 -> DONE
+
 == ThirdChoice ==
-#harm 20
-..Why? (PARTY Happiness -2)
+#happyparty 10
+You throw a balloon out the window, and the clown catches it with a dramatic bow. The group's laughter echoes for miles. (PARTY happiness +1)
 -> DONE

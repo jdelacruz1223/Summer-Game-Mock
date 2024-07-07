@@ -3,7 +3,9 @@ using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class Manager : MonoBehaviour
     [SerializeField] public int currentMoney { get; private set; }
     public SpriteModel playerSprite { get; set; }
     public List<Sprite> partySprites { get; private set; }
+    public List<Sprite> photosTaken { get; set; }
 
     /// <summary>
     /// All In Game Item Variables
@@ -43,6 +46,12 @@ public class Manager : MonoBehaviour
 
     // Settings
     public float audioVolume { get; private set; }
+
+    /// <summary>
+    /// Shops Variable
+    /// </summary>
+    public List<ItemModel> itemsInShop { get; set; }
+
 
     public enum townLocations
     {
@@ -84,10 +93,12 @@ public class Manager : MonoBehaviour
 
         playerSprite = new SpriteModel();
         partySprites = new List<Sprite>();
+        photosTaken = new List<Sprite>();
 
         startTime = Time.time;
         isRunning = true;
 
+        budget = 500;
         currentMoney = 500;
 
         tiresNum = 0;
@@ -110,8 +121,31 @@ public class Manager : MonoBehaviour
         audioVolume = 0.5f;
     }
 
+    public void ReplayGame()
+    {
+        Destroy(this.gameObject);
+        SceneManager.LoadScene(0);
+    }
+
     int lessCheck(int initial, int new_value) { int val = initial - new_value; if (val >= 0) return val; else return 0; }
-    
+
+    #region Shop Manager
+    public bool CanAfford(int value)
+    {
+        var final_value = currentMoney - value;
+
+        if (final_value == 0) return true;
+        if (final_value > 0) return true;
+        return false;
+
+    }
+
+    public int PriceOfItem(string item)
+    {
+        return itemsInShop.FirstOrDefault(i => i.Name == item).Price;
+    }
+    #endregion
+
     #region Time Functions
     public float GetTotalTimeElapsed()
     {
@@ -180,7 +214,11 @@ public class Manager : MonoBehaviour
     {
         foreach (var member in party)
         {
-            if ((member.Health + healthToAdd) >= 100) return;
+            if ((member.Health + healthToAdd) >= 100)
+            {
+                member.Health = 100;
+                continue;
+            }
 
             member.Health += healthToAdd;
         }
@@ -254,7 +292,7 @@ public class Manager : MonoBehaviour
     public void setCurrentProgress(float value) => currentProgress = value;
 
     public void increaseRandomEncounter() => encountersNum++;
-    public void increaseFishCaught() => encountersNum++;
+    public void increaseFishCaught() => fishCaughtNum++;
     #endregion
 
     #region Settings

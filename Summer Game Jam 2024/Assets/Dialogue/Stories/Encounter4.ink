@@ -1,4 +1,6 @@
 #  Nausea
+#Party true
+EXTERNAL setItem(item)
 
  -> main
  
@@ -13,7 +15,7 @@
         -> ThirdChoice
         
 == FirstChoice ==
-#harmparty 20
+#harmparty 15
 They quickly open the window, letting their stomach loose into the wind. It's a gross thought to dwell on but at least none of it got into the car (the smell did though). (PARTY happiness -2)
 -> DONE
 == SecondChoice ==
@@ -22,8 +24,8 @@ You pull over to the side of the road, and not a second too soon as the next thi
 
 -> DONE
 == ThirdChoice ==
+~setItem("medicine -1")
 #happyparty 20
-#medicine -1
 The boogie bomb in their stomach worked a little quicker than the digestive system versus some Pepto in the time it took for you to pull over, but it did help the aftermath. (PARTY happiness +2, medicine -1)
 
 

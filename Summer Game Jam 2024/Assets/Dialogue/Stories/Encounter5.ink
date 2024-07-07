@@ -1,4 +1,7 @@
 #  Rogue Cargo
+#Party true
+
+EXTERNAL setItem(item)
 
  -> main
  
@@ -12,7 +15,7 @@
         -> ThirdChoice
         
 == FirstChoice ==
-#tires -1
+~setItem("tires -1")
 They're just cardboard, what's the worst that can happen? Torn underside shielding? Oil leak? Combustion? Nah, just a punctured tire. (tire -1)
 
 

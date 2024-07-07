@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TextFade : MonoBehaviour
+public class IntroTextFade : MonoBehaviour
 {
     public TextMeshProUGUI welcomeSignTxt;
     public TextMeshProUGUI townTxt;
