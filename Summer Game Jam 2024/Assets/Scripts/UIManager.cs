@@ -44,6 +44,12 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        if (DebugManager.GetInstance() != null) if (!DebugManager.GetInstance().uiManager)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+
         playerImg.overrideSprite = Manager.GetInstance().playerSprite.sprite;
         StartCoroutine(updateUI());
     }

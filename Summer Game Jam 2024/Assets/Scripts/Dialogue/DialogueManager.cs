@@ -54,6 +54,8 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        if (DebugManager.GetInstance() != null) if (!DebugManager.GetInstance().dialogueManager) { Destroy(this.gameObject); return; };
+
         dialogueIsPlaying = false;
         hasNoItem = false;
         UIManager.GetInstance().ControlUI(dialoguePanel, false);

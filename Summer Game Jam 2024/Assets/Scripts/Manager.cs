@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
+    
+
     /// <summary>
     /// Intro Setup Variables
     /// </summary>
@@ -31,6 +33,7 @@ public class Manager : MonoBehaviour
     [SerializeField] public int encountersNum { get; private set; }
     [SerializeField] public int gameNum { get; private set; }
     [SerializeField] public int medicineNum { get; private set; }
+    [SerializeField] public int bottleDestroyedNum { get; private set; }
 
     /// <summary>
     /// Gameplay Variables
@@ -81,6 +84,9 @@ public class Manager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    
+
+
     private void Start()
     {
         InitializeGame();
@@ -106,6 +112,7 @@ public class Manager : MonoBehaviour
         fishbaitNum = 0;
         gameNum = 0;
         medicineNum = 0;
+        bottleDestroyedNum = 0;
 
         fishCaughtNum = 0;
         encountersNum = 0;
@@ -120,6 +127,15 @@ public class Manager : MonoBehaviour
         // Settings
         audioVolume = 0.5f;
     }
+
+    //public bool hasAudioManager { get; private set; }
+    //public bool hasDialogueManager { get; private set; }
+    //public bool hasInputManager { get; private set; }
+    //public bool hasProgressManager { get; private set; }
+    //public bool hasRandomManager { get; private set; }
+    //public bool hasUIManager { get; private set; }
+
+    
 
     public void ReplayGame()
     {
@@ -268,7 +284,10 @@ public class Manager : MonoBehaviour
 
     public void increaseGameCount(int value) => gameNum += value;
     public void decreaseGameCount(int value) => gameNum = lessCheck(gameNum, value);
-
+    public void setGameCount(int value) => gameNum = value;
+    public void increaseBottleDestroyedCount(int value) => bottleDestroyedNum += value;
+    public void decreaseBottleDestroyedCount(int value) => bottleDestroyedNum += lessCheck(gameNum, value);
+    public void setBottleDestroyedCount(int value) => bottleDestroyedNum = value;
     public void setDestination(townLocations town) => currentDestination = town;
     #endregion
 

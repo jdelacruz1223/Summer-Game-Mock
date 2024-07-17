@@ -12,6 +12,11 @@ public class BackgroundMusic : MonoBehaviour
     // Reference to the AudioSource component
     public AudioSource Audio;
 
+    private void Start()
+    {
+        if (DebugManager.GetInstance() != null) if (!DebugManager.GetInstance().audioManager) { Destroy(this.gameObject); return; }
+    }
+
     void Awake()
     {
         // Singleton pattern to keep only one instance alive
