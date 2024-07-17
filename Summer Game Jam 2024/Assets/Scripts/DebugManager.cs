@@ -29,7 +29,7 @@ public class DebugManager : Manager
         }
 
         me = this;
-        Manager.me = this;
+        Manager.me = me;
         DontDestroyOnLoad(gameObject);
     }
 

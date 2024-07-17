@@ -1,0 +1,65 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BottleSpawnController : MonoBehaviour
+{
+    public enum SpawnState
+    {
+        active,
+        destroyed
+    }
+    public SpawnState currentState;
+    [SerializeField] private GameObject BottleToSpawn;
+    [SerializeField] private GameObject[] Spawnpoints;
+    [SerializeField] private int spawnDelay = 2;
+    private List<GameObject> activeBottles = new List<GameObject>();
+    private int maxBottles = 4;
+    private int currentSpawnpointIndex;
+    private bool isSpawning = false;
+
+    void Start()
+    {
+        currentState = SpawnState.active;
+    }
+
+    void Update()
+    {
+        if(checkBottle())
+        {
+            StartCoroutine(SpawnBottleCoroutine());
+        }
+    }
+
+    private IEnumerator SpawnBottleCoroutine()
+    {
+        isSpawning = true;
+
+        if(currentSpawnpointIndex == Spawnpoints.Length)
+        {
+            currentSpawnpointIndex = 0;
+        }
+
+        GameObject NewBottle = Instantiate
+        (
+            BottleToSpawn, 
+            Spawnpoints[currentSpawnpointIndex].transform.position, 
+            Quaternion.identity
+        );
+
+        activeBottles.Add(NewBottle);
+        currentSpawnpointIndex++;
+
+        yield return new WaitForSeconds(spawnDelay);
+        isSpawning = false;
+    }
+
+    bool checkBottle()
+    {
+        if(activeBottles.Count < maxBottles && !isSpawning)
+        {
+            return true;
+        }
+        else return false;
+    }
+}

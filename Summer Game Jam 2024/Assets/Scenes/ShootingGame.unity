@@ -2843,9 +2843,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameCamera: {fileID: 1655495647}
+<<<<<<< HEAD
   bottle: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   mousePos: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> 8eefa8e6c29196c325217c630e27ad7bd8df3e89
 --- !u!1 &1675996549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2877,6 +2880,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1782898826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &1696578807
 GameObject:
   m_ObjectHideFlags: 0
@@ -2896,6 +2900,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+=======
+>>>>>>> 8eefa8e6c29196c325217c630e27ad7bd8df3e89
 --- !u!1 &1782898825
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,10 +2958,13 @@ MonoBehaviour:
   - {fileID: 328210689}
   - {fileID: 550554573}
   spawnDelay: 2
+<<<<<<< HEAD
   activeBottles: []
   maxBottles: 4
   currentSpawnpointIndex: 0
   isSpawning: 0
+=======
+>>>>>>> 8eefa8e6c29196c325217c630e27ad7bd8df3e89
 --- !u!1 &1840796608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,13 +2998,19 @@ Transform:
   - {fileID: 272598230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!4 &2031072468
 Transform:
   m_ObjectHideFlags: 0
+=======
+--- !u!4 &2031072468 stripped
+Transform:
+>>>>>>> 8eefa8e6c29196c325217c630e27ad7bd8df3e89
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4a6aa7a4c52668344838b82246dc60f2,
     type: 3}
   m_PrefabInstance: {fileID: 140446549}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1696578807}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
@@ -3067,6 +3082,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696578807}
   m_Mesh: {fileID: -4173039378462182233, guid: 4a6aa7a4c52668344838b82246dc60f2, type: 3}
+=======
+>>>>>>> 8eefa8e6c29196c325217c630e27ad7bd8df3e89
 --- !u!1 &2079939043
 GameObject:
   m_ObjectHideFlags: 0
