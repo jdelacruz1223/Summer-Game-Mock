@@ -13,8 +13,9 @@ public class BottleSpawnController : MonoBehaviour
     [SerializeField] private GameObject BottleToSpawn;
     [SerializeField] private GameObject[] Spawnpoints;
     [SerializeField] private int spawnDelay = 2;
+    [SerializeField] private int maxBottles = 4;
     private List<GameObject> activeBottles = new List<GameObject>();
-    private int maxBottles = 4;
+    
     private int currentSpawnpointIndex;
     private bool isSpawning = false;
 
@@ -33,6 +34,7 @@ public class BottleSpawnController : MonoBehaviour
 
     private IEnumerator SpawnBottleCoroutine()
     {
+        Debug.Log("start");
         isSpawning = true;
 
         if(currentSpawnpointIndex == Spawnpoints.Length)
@@ -52,10 +54,12 @@ public class BottleSpawnController : MonoBehaviour
 
         yield return new WaitForSeconds(spawnDelay);
         isSpawning = false;
+        Debug.Log("stop");
     }
 
     bool checkBottle()
     {
+        Debug.Log("");
         if(activeBottles.Count < maxBottles && !isSpawning)
         {
             return true;
