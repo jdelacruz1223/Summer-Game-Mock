@@ -48,8 +48,10 @@ public class targetScript : MonoBehaviour
                 if (bottle.CompareTag("Bottle")) {
                     shotsHit++;
                     debugManager.increaseBottleDestroyedCount(1);
-                    bottle.SetActive(false);
+                    Destroy(bottle.transform.parent.gameObject);
                     Debug.Log("A bottle has been hit!");
+                } else {
+                    Debug.Log("Miss!");
                 }
             } else {
                 Debug.Log("Miss!");
