@@ -127,8 +127,16 @@ public class CharacterSetupManager : MonoBehaviour
 
     public void FinishCharacterSetup()
     {
-        SceneManager.LoadScene("TravelScene");
-        Destroy(this.gameObject);
+        if(nameTxt.text.Length <= 0)
+        {
+            //cannot enter empty field text
+        }
+        else 
+        {
+            SceneManager.LoadScene("TravelScene");
+            Destroy(this.gameObject);
+        }
+        
     }
 
     public void setName() => Manager.GetInstance().setUsername(nameTxt.text);

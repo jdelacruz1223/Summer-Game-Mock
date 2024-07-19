@@ -5,6 +5,7 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] public GameObject controlsPanel;
     [SerializeField] public GameObject settingsPanel;
+    [SerializeField] public GameObject partyNextButton;
     [SerializeField] private SceneTransition sceneTransition;
     private GameObject currentPanel;
 
