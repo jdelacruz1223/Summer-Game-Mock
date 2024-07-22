@@ -59,7 +59,7 @@ public class BottleSpawnController : MonoBehaviour
 
     bool checkBottle()
     {
-        Debug.Log("");
+        //Debug.Log("");
         if(activeBottles.Count < maxBottles && !isSpawning)
         {
             return true;
