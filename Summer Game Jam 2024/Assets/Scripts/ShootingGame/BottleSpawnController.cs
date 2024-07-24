@@ -7,7 +7,7 @@ public class BottleSpawnController : MonoBehaviour
     public enum SpawnState
     {
         active,
-        destroyed
+        inactive
     }
     public SpawnState currentState;
     [SerializeField] private GameObject BottleToSpawn;
@@ -21,12 +21,12 @@ public class BottleSpawnController : MonoBehaviour
 
     void Start()
     {
-        currentState = SpawnState.active;
+        currentState = SpawnState.inactive;
     }
 
     void Update()
     {
-        if(checkBottle())
+        if(checkBottle() && currentState == SpawnState.active)
         {
             StartCoroutine(SpawnBottleCoroutine());
         }
@@ -65,5 +65,8 @@ public class BottleSpawnController : MonoBehaviour
             return true;
         }
         else return false;
+    }
+    public void destroyBottle(GameObject bottle){
+        activeBottles.Remove(bottle);
     }
 }

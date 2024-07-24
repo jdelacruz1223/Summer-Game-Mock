@@ -9,6 +9,7 @@ public class targetScript : MonoBehaviour
 {
     public Camera gameCamera;
     public GameObject manager;
+    public GameObject bottleSpawner;
     [Range(0,5)]
     public float fireRate = 1f;
     [Range(1,12)]
@@ -16,12 +17,9 @@ public class targetScript : MonoBehaviour
     [Range(0,5)]
     public float reloadDelay = 2f;
     private bool isGameActive;
-    [SerializeField] 
-    private float timeLimit = 45f;
-    private float currentTime;
     private int score;
     [SerializeField]
-    private int scorePerBottle = 50;
+    private int scorePerBottle = 10;
     private int numBullets;
     private float nextFire;
     private int shotsFired;
@@ -29,20 +27,15 @@ public class targetScript : MonoBehaviour
     private float Accuracy;
     private GameObject bottle;
     private DebugManager debugManager;
-    //private Vector3 target;
+    private BottleSpawnController spawnController;
     private Vector3 mousePos;
-    //public GameObject CrossHairs;
     
     // Start is called before the first frame update
     void Start()
     {
-        //Cursor.visible = false;
-        isGameActive = true;
-        shotsFired = 0;
-        shotsHit = 0;
-        score = 0;
-        numBullets = ammoCap;
+        isGameActive = false;
         debugManager = manager.GetComponent<DebugManager>();
+        spawnController = bottleSpawner.GetComponent<BottleSpawnController>();
         debugManager.setBottleDestroyedCount(0);
     }
 
@@ -51,14 +44,12 @@ public class targetScript : MonoBehaviour
     {
         mousePos = Input.mousePosition; 
         Ray ray = gameCamera.ScreenPointToRay(mousePos);
-        //target = gameCamera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, gameCamera.nearClipPlane));
         if (isGameActive) {
             if (Input.GetMouseButtonDown(0) && Time.time > nextFire && numBullets > 0) {
                 shotsFired++;
                 numBullets--;
                 nextFire = Time.time + fireRate;
                 Debug.DrawRay(gameCamera.transform.position, ray.direction * 100, Color.red, 2f);
-                //Debug.Log("Mouse position was at (" + target.x + ", " + target.y + ", " + target.z +")");
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
                     bottle = hit.collider.gameObject;
@@ -66,11 +57,12 @@ public class targetScript : MonoBehaviour
                         shotsHit++;
                         score += scorePerBottle;
                         debugManager.increaseBottleDestroyedCount(1);
+                        spawnController.destroyBottle(bottle.transform.parent.gameObject);
                         Destroy(bottle.transform.parent.gameObject);
                         Debug.Log("A bottle has been hit! Score: " + score);
-                } else {
-                    Debug.Log("Miss!");
-                }
+                    } else {
+                        Debug.Log("Miss!");
+                    }
                 } else {
                     Debug.Log("Miss!");
                 }
@@ -84,28 +76,32 @@ public class targetScript : MonoBehaviour
                 nextFire = Time.time + reloadDelay;
                 Debug.Log("Reloading!");
             }
-            if (currentTime < timeLimit) {
-                currentTime += Time.deltaTime;
-                Debug.Log("Time Left: " + (timeLimit - currentTime));
-            } else {
-                Debug.Log("Time's Up! Score: " + score);
-                isGameActive = false;
-            }
+            
+        }
+    }
+    public void setMinigameActive(bool b) {
+        isGameActive = b;
+        if (isGameActive) {
+            score = 0;
+            numBullets = ammoCap;
+            shotsFired = 0;
+            shotsHit = 0;
+            score = 0;
+            Debug.Log("Game Start!");
+        } else {
+            Debug.Log("Game is already active!");
         }
     }
     public bool isMinigameActive() {
         return isGameActive;
-    }
-    public float getTimeLeft() {
-        return currentTime;
-    }
-    public float getTimeLimit() {
-        return timeLimit;
     }
     public void setScore(int s) {
         score = s;
     }
     public int getScore() {
         return score;
+    }
+    public int getNumBullets() {
+        return numBullets;
     }
 }
