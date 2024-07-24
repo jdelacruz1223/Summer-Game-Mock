@@ -58252,7 +58252,7 @@ PrefabInstance:
     - target: {fileID: -2253911629886400664, guid: 882e293f29f6d47468edc9a50bd6a7d7,
         type: 3}
       propertyPath: m_Name
-      value: fruit woman
+      value: 'shopkeep '
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 882e293f29f6d47468edc9a50bd6a7d7,
         type: 3}
@@ -59365,7 +59365,7 @@ PrefabInstance:
     - target: {fileID: -2253911629886400664, guid: 882e293f29f6d47468edc9a50bd6a7d7,
         type: 3}
       propertyPath: m_Name
-      value: shopkeep
+      value: fruit women
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 882e293f29f6d47468edc9a50bd6a7d7,
         type: 3}
